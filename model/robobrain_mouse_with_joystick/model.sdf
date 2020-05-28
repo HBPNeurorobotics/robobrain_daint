@@ -1,0 +1,366 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="robobrain_mouse">
+    <pose>0.0 0.0 0.05119812488555908 0.0 0.0 0.0</pose>
+    <link name="humerus">
+      <gravity>true</gravity>
+      <self_collide>true</self_collide>
+      <pose>0.010209999978542328 -0.06925000250339508 0.02394000068306923 1.4660766124725342 0.9948377013206482 1.1344640254974365</pose>
+      <inertial>
+        <mass>5.199999941396527e-05</mass>
+        <inertia>
+          <ixx>1.2712433772321674e-06</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>1.3205350114731118e-05</iyy>
+          <iyz>0.0</iyz>
+          <izz>1.3603204934042878e-05</izz>
+        </inertia>
+        <pose>0.005032066721469164 -0.00032134982757270336 -2.9600225389003754e-05 4.8393488327747036e-08 2.931214737600385e-07 -3.616433730257995e-07</pose>
+      </inertial>
+      <visual name="VIS_humerus">
+        <pose>-7.799826562404633e-08 9.639188647270203e-08 -7.2177499532699585e-09 3.395447123466511e-08 2.376813057480831e-07 -2.813370656440384e-07</pose>
+        <geometry>
+          <mesh>
+            <uri>model://robobrain_mouse_with_joystick/meshes/visual/VIS_humerus.dae</uri>
+            <scale>0.0014999998966231942 0.0014999998966231942 0.001500000013038516</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="humerus_helper">
+      <gravity>true</gravity>
+      <self_collide>true</self_collide>
+      <pose>0.010209999978542328 -0.06925000250339508 0.02394000068306923 1.4660766124725342 0.9948377013206482 1.1344640254974365</pose>
+      <inertial>
+        <mass>9.999999747378752e-06</mass>
+        <inertia>
+          <ixx>1.0e-05</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>1.0e-05</iyy>
+          <iyz>0.0</iyz>
+          <izz>1.0e-05</izz>
+        </inertia>
+      <pose>0.005032066721469164 -0.00032134982757270336 -2.9600225389003754e-05 4.8393488327747036e-08 2.931214737600385e-07 -3.616433730257995e-07</pose>
+      </inertial>
+    </link>
+
+    <link name="radius">
+      <gravity>true</gravity>
+      <self_collide>true</self_collide>
+      <pose>0.012647438611480986 -0.06404050612384916 0.015079417197930326 -0.06633332379216957 0.44390657649748255 -1.56014954069828</pose>
+      <inertial>
+        <mass>2.700000004551839e-05</mass>
+        <inertia>
+          <ixx>1.0198847348874551e-06</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>2.106719693983905e-05</iyy>
+          <iyz>0.0</iyz>
+          <izz>2.0488319933065213e-05</izz>
+        </inertia>
+        <pose>0.005458447150886059 -3.1477538868784904e-05 -0.0004281606525182724 1.8891088870987005e-07 -8.122217565187384e-08 -3.649179802778235e-07</pose>
+      </inertial>
+      <visual name="VIS_radius">
+        <pose>6.948539521545172e-09 4.924368113279343e-07 1.775333657860756e-08 4.984032671018213e-07 -8.147556229687325e-08 -7.900476930444711e-07</pose>
+        <geometry>
+          <mesh>
+            <uri>model://robobrain_mouse_with_joystick/meshes/visual/VIS_radius.dae</uri>
+            <scale>0.001500000013038516 0.0014999998966231942 0.001500000013038516</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name="foot">
+      <gravity>true</gravity>
+      <self_collide>true</self_collide>
+      <pose>0.012764389012832384 -0.07558950943071956 0.009830850598060603 1.57053142891783 0.09644763525526234 -1.5209226961654847</pose>
+      <inertial>
+        <mass>9.000000318337698e-06</mass>
+        <inertia>
+          <ixx>5.463311936182436e-07</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>4.960554633726133e-06</iyy>
+          <iyz>0.0</iyz>
+          <izz>4.59005605080165e-06</izz>
+        </inertia>
+        <pose>0.0037877950817346573 -0.0002675749419722706 0.00010534156172070652 3.6688294358100393e-07 3.866241016226013e-08 2.624494470637728e-07</pose>
+      </inertial>
+      <visual name="VIS_foot">
+        <pose>-2.4389009922742844e-08 -1.1721785995177925e-06 7.663402357138693e-09 8.931618253882334e-07 7.077481711803557e-08 5.101887836644892e-07</pose>
+        <geometry>
+          <mesh>
+            <uri>model://robobrain_mouse_with_joystick/meshes/visual/VIS_foot.dae</uri>
+            <scale>0.0014999998966231942 0.0014999998966231942 0.0014999998966231942</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+
+    <link name="joystick">
+      <gravity>true</gravity>
+      <self_collide>true</self_collide>
+      <pose>0.013086665115223425 -0.08203651204175601 0.008903921331343717 1.5985088335883262 -0.0592322332915342 0.013352217916964459</pose>
+      <inertial>
+        <mass>5.199999941396527e-05</mass>
+        <inertia>
+          <ixx>2.2342641386785544e-05</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>2.2342641386785544e-05</iyy>
+          <iyz>0.0</iyz>
+          <izz>1.5624367222244473e-07</izz>
+        </inertia>
+        <pose>-2.8468086384236813e-05 -0.00808578822761774 2.787503763101995e-05 -1.5739771127700806 -0.008658049628138542 -0.003994327038526535</pose>
+      </inertial>
+      <visual name="VIS_joystick">
+        <pose>-0.00029881263617426157 -0.012659442611038685 9.10137896426022e-05 -1.5739768743515015 -0.008658264763653278 -0.003994283266365528</pose>
+        <geometry>
+          <mesh>
+            <uri>model://robobrain_mouse_with_joystick/meshes/visual/VIS_joystick.dae</uri>
+            <scale>0.0004850113473366946 0.0004842984490096569 0.012190139852464199</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name="joystick_helper">
+      <gravity>true</gravity>
+      <self_collide>true</self_collide>
+      <pose>0.014552723951656505 -0.08131515263457567 -0.01604263005741325 1.5985088335883262 -0.0592322332915342 0.013352217916964457</pose>
+      <inertial>
+        <mass>9.999999747378752e-06</mass>
+        <inertia>
+          <ixx>1.0e-05</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>1.0e-05</iyy>
+          <iyz>0.0</iyz>
+          <izz>1.0e-05</izz>
+        </inertia>
+        <pose>1.979060471057892e-09 2.867251168936491e-06 9.167706593871117e-09 0.0 -3.0779706561290254e-10 -3.616615451562666e-09</pose>
+      </inertial>
+    </link>
+
+
+    <joint name="world_humerus" type="revolute">
+      <parent>world</parent>
+      <child>humerus_helper</child>
+      <axis>
+        <xyz>0.0 0.0 1.0</xyz>
+        <limit>
+          <lower>-1.8</lower>
+          <upper>0.8</upper>
+        </limit>
+        <dynamics>
+          <damping>0.0001</damping>
+          <friction>0.0</friction>
+          <spring_reference>0.0</spring_reference>
+          <spring_stiffness>0.0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <cfm_damping>false</cfm_damping>
+          <implicit_spring_damper>false</implicit_spring_damper>
+          <cfm>0.0</cfm>
+          <erp>0.20000000298023224</erp>
+        </ode>
+      </physics>
+    </joint>
+
+
+    <joint name="humerus_helper_joint" type="revolute">
+      <parent>humerus_helper</parent>
+      <child>humerus</child>
+      <axis>
+        <xyz>0.0 1.0 0.0</xyz>
+        <limit>
+          <lower>-1.8</lower>
+          <upper>0.8</upper>
+        </limit>
+        <dynamics>
+          <damping>0.0001</damping>
+          <friction>0.0</friction>
+          <spring_reference>0.0</spring_reference>
+          <spring_stiffness>0.0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <cfm_damping>false</cfm_damping>
+          <implicit_spring_damper>false</implicit_spring_damper>
+          <cfm>0.0</cfm>
+          <erp>0.20000000298023224</erp>
+        </ode>
+      </physics>
+    </joint>
+
+
+    <joint name="humerus_radius" type="revolute">
+      <parent>humerus</parent>
+      <child>radius</child>
+      <axis>
+        <xyz>0.0 1.0 0.0</xyz>
+        <dynamics>
+          <damping>0.00001</damping>
+          <friction>0.0</friction>
+          <spring_reference>0.0</spring_reference>
+          <spring_stiffness>0.0</spring_stiffness>
+        </dynamics>
+        <limit>
+          <lower>-1.0</lower>
+          <upper>1.0459999942334164</upper>
+        </limit>
+      </axis>
+      <physics>
+        <ode>
+          <cfm_damping>false</cfm_damping>
+          <implicit_spring_damper>false</implicit_spring_damper>
+          <cfm>0.0</cfm>
+          <erp>0.20000000298023224</erp>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint name="radius_foot" type="revolute">
+      <parent>radius</parent>
+      <child>foot</child>
+      <axis>
+        <xyz>0.0 0.0 1.0</xyz>
+        <dynamics>
+          <damping>0.000001</damping>
+          <friction>0.0</friction>
+          <spring_reference>0.0</spring_reference>
+          <spring_stiffness>0.0</spring_stiffness>
+        </dynamics>
+        <limit>
+          <lower>-0.8721999709659732</lower>
+          <upper>0.6000000070036828</upper>
+        </limit>
+      </axis>
+      <physics>
+        <ode>
+          <cfm_damping>false</cfm_damping>
+          <implicit_spring_damper>false</implicit_spring_damper>
+          <cfm>0.0</cfm>
+          <erp>0.20000000298023224</erp>
+        </ode>
+      </physics>
+    </joint>
+
+
+    <joint name="foot_joystick" type="ball">
+      <parent>foot</parent>
+      <child>joystick</child>
+      <axis>
+        <xyz>1.0 0.0 0.0</xyz>
+        <dynamics>
+          <damping>0.0001</damping>
+          <friction>0.0</friction>
+          <spring_reference>0.0</spring_reference>
+          <spring_stiffness>0.0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <cfm_damping>false</cfm_damping>
+          <implicit_spring_damper>false</implicit_spring_damper>
+          <cfm>0.0</cfm>
+          <erp>0.20000000298023224</erp>
+        </ode>
+      </physics>
+    </joint>
+
+
+
+    <joint name="joystick_helper_joint" type="revolute">
+      <parent>joystick</parent>
+      <child>joystick_helper</child>
+      <axis>
+        <xyz>1.0 0.0 0.0</xyz>
+        <dynamics>
+          <damping>0.000010000000474974513</damping>
+          <friction>0.0</friction>
+          <spring_reference>0.0</spring_reference>
+          <spring_stiffness>0.0</spring_stiffness>
+        </dynamics>
+        <limit>
+          <lower>-1.5707963267948966</lower>
+          <upper>1.5707963267948966</upper>
+        </limit>
+      </axis>
+      <physics>
+        <ode>
+          <cfm_damping>false</cfm_damping>
+          <implicit_spring_damper>false</implicit_spring_damper>
+          <cfm>0.0</cfm>
+          <erp>0.20000000298023224</erp>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint name="joystick_world_joint" type="revolute">
+      <parent>world</parent>
+      <child>joystick_helper</child>
+      <axis>
+        <xyz>0.0 1.0 0.0</xyz>
+        <dynamics>
+          <damping>0.000010000000474974513</damping>
+          <friction>0.0</friction>
+          <spring_reference>0.0</spring_reference>
+          <spring_stiffness>0.0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <cfm_damping>false</cfm_damping>
+          <implicit_spring_damper>false</implicit_spring_damper>
+          <cfm>0.0</cfm>
+          <erp>0.20000000298023224</erp>
+        </ode>
+      </physics>
+    </joint>
+
+
+    <muscles>model://robobrain_mouse_with_joystick/muscles.osim</muscles>
+    <plugin name="muscle_interface_plugin" filename="libgazebo_ros_muscle_interface.so"></plugin>
+
+
+    <plugin filename="libgeneric_controller_plugin.so" name="robobrain_mouse_controller">
+
+        <controller joint_name="world_humerus">
+            <type>position</type>
+            <pid>0 0 0</pid>
+        </controller>
+        <controller joint_name="humerus_helper_joint">
+            <type>position</type>
+            <pid>0 0 0</pid>
+        </controller>
+        <controller joint_name="humerus_radius">
+            <type>position</type>
+            <pid>0 0 0</pid>
+        </controller>
+        <controller joint_name="radius_foot">
+            <type>position</type>
+            <pid>0 0 0</pid>
+        </controller>
+        <controller joint_name="foot_joystick">
+            <type>position</type>
+            <pid>0 0 0</pid>
+        </controller>
+        <controller joint_name="joystick_helper_joint">
+            <type>position</type>
+            <pid>0 0 0</pid>
+        </controller>
+        <controller joint_name="joystick_world_joint">
+            <type>position</type>
+            <pid>0 0 0</pid>
+        </controller>
+    </plugin>
+
+  </model>
+</sdf>
