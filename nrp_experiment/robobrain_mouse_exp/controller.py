@@ -1,6 +1,6 @@
 from std_msgs.msg import Float64
 
-@nrp.MapVariable("muscle_actuation", initial_value=[0.,0.,0.,0.,0.,0.], scope=nrp.GLOBAL)
+@nrp.MapVariable("muscle_actuation", initial_value=8*[0.], scope=nrp.GLOBAL)
 @nrp.MapVariable("muscle_positions", initial_value=None, scope=nrp.GLOBAL)
 
 @nrp.MapRobotPublisher("joystick_forward", Topic("/robobrain_mouse/joystick_helper_joint/cmd_pos", Float64))
@@ -19,7 +19,7 @@ def controller (t,
         
         
     ## Send actuation values to muscle
-    muscle_actuation.value = [1.0, 0.3, 0.4, 0.8, 0.6, 0.2]
+    muscle_actuation.value = [0.3, 0.5, 0.4, 0.4, 0.6, 0.2, 0.2, 0.6]
         
         
     ## Add force to joystick

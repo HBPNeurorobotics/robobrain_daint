@@ -1,0 +1,6 @@
+
+
+## Model
+- add joint controller - joint feedback + push joystick to the side
+- color M platform
+- evaluate muscle attachement points with biological data
