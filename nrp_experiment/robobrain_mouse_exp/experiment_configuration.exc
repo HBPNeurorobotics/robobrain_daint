@@ -3,7 +3,7 @@
   xmlns="http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig" xsi:schemaLocation="http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig ../ExDConfFile.xsd">
   <name>Robobrain Holodeck NRP Experiment</name>
   <thumbnail>ExDMouseCDP1.jpg</thumbnail>
-  <description>CDP-1 mouse experiment MVP</description>
+  <description>Loads a virtual mouse with the robobrain experimental setup into the Holodeck environment.</description>
   <tags>mouse biological holodeck</tags>
   <timeout>1800</timeout>
   <configuration type="3d-settings" src="holodeck.ini" />
@@ -26,5 +26,4 @@
   </gzbridgesettings>
   <cloneDate>2020-05-08T18:50:32</cloneDate>
 
-  <rosLaunch src="roslaunch.launch" />
 </ExD>

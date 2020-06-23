@@ -1,52 +1,63 @@
 # -*- coding: utf-8 -*-
 """
-This file contains the setup of the neuronal network running the Husky experiment with neuronal image recognition
+This is a minimal brain with 2 neurons connected together.
+
+Maturity: production
 """
 # pragma: no cover
 
-__author__ = 'Lazar Mateev, Georg Hinkel'
+__author__ = 'Template'
 
-import hbp_nrp_cle.tf_framework as nrp
-import logging
 from hbp_nrp_cle.brainsim import simulator as sim
 import numpy as np
-import h5py
+import logging
 
 logger = logging.getLogger(__name__)
 
-
 def create_brain():
     """
-    Initializes PyNN with the neuronal network that has to be simulated
+    Initializes PyNN with the minimal neuronal network
     """
-    import os
 
-    h5_file_path = os.path.join(os.environ.get('NRP_MODELS_DIRECTORY'), 'brain_model/CDP1_brain_model_700_neurons.h5')
-    h5file = h5py.File(h5_file_path, "r")
+    sim.setup(timestep=0.1, min_delay=0.1, max_delay=20.0, threads=1, rng_seeds=[1234])
 
-    #sim.setup(timestep=0.1, min_delay=0.1, max_delay=20.0, threads=1, debug=True)
+    # Following parameters were taken from the husky braitenberg brain experiment (braitenberg.py)
 
-    N = (h5file["x"].value).shape[0]
+    SENSORPARAMS = {'cm': 0.025,
+                    'v_rest': -60.5,
+                    'tau_m': 10.,
+                    'e_rev_E': 0.0,
+                    'e_rev_I': -75.0,
+                    'v_reset': -60.5,
+                    'v_thresh': -60.0,
+                    'tau_refrac': 10.0,
+                    'tau_syn_E': 2.5,
+                    'tau_syn_I': 2.5}
 
-    cells = sim.Population(N, sim.IF_cond_alpha, {})
+    SYNAPSE_PARAMS = {"weight": 0.5e-4,
+                      "delay": 20.0,
+                      'U': 1.0,
+                      'tau_rec': 1.0,
+                      'tau_facil': 1.0}
 
-    for i, gid_ in enumerate(range(1, N + 1)):
-        hasSyns = True
-        try:
-            r_syns = h5file["syn_" + str(gid_)].value
-            r_synsT = h5file["synT_" + str(gid_)].value
-        except:
-            hasSyns = False
-        if hasSyns and i < 10:
-            params = {'U': 1.0, 'tau_rec': 0.0, 'tau_facil': 0.0}; syndynamics = sim.SynapseDynamics(
-                fast=sim.TsodyksMarkramMechanism(**params))
-            sim.Projection(cells[i:i + 1], cells[r_synsT - 1], sim.FixedNumberPostConnector(
-                n=r_synsT.shape[0]), synapse_dynamics=syndynamics)
+    cell_class = sim.IF_cond_alpha(**SENSORPARAMS)
 
-    population = cells
-    h5file.close()
+    # Define the network structure: 2 neurons (1 sensor and 1 actors)
+    population = sim.Population(size=2,
+                                cellclass=cell_class)
 
-    logger.info("Circuit description: " + str(population.describe()))
+    synapse_type = sim.TsodyksMarkramSynapse(**SYNAPSE_PARAMS)
+    connector = sim.AllToAllConnector()
+
+    # Connect neurons
+    sim.Projection(presynaptic_population=population[0:1],
+                   postsynaptic_population=population[1:2],
+                   connector=connector,
+                   synapse_type=synapse_type,
+                   receptor_type='excitatory')
+
+    sim.initialize(population, v=population.get('v_rest'))
+
     return population
 
 circuit = create_brain()

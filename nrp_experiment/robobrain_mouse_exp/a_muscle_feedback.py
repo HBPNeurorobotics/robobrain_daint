@@ -25,9 +25,8 @@ def a_muscle_feedback (t, muscle_states_msg, muscle_velocities, muscle_positions
     # get initial length
     if isinstance(initial_muscle_length.value, type(None)):
         initial_muscle_length.value = positions.values()
-    clientLogger.info('new1', initial_muscle_length.value)
 
-    ## origin in the center position:
+    # origin in the center position:
     muscle_positions.value = [value - initial_muscle_length.value[idx] for idx, value in enumerate(positions.values())]
 
     muscle_velocities.value = list(velocities.values())
