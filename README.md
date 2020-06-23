@@ -3,17 +3,17 @@ This repository contains the NRP experiment to integrate the robobrain in a mous
 A short video demo of the experiment setup is located in the media folder.
 
 To run the experiment:
-- create a symbolic link in $HBP/Models to the model
+- create a symbolic link in $HBP/Models to the model\
         ```console
         ln -s /ABS_PATH/robobrain_nrp/model/robobrain_mouse_with_joystick  $HBP/Models/robobrain_mouse_with_joystick
         ```
         
-- Create symlinks for your NRP models with 
+- Create symlinks for your NRP models with \
         ```console
         $HBP/Models/create-symlinks.sh
         ```
         
-- create a symbolic link in your NRP workspace to the experiment
+- create a symbolic link in your NRP workspace to the experiment\
         ```console
         ln -s /ABS_PATH/robobrain_nrp/nrp_experiment/robobrain_mouse_exp $HOME/.opt/nrpStorage/robobrain_mouse_exp
         ```
