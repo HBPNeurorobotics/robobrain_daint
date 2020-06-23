@@ -1,7 +1,0 @@
-publish_interval: 100
-settings:
-  /robobrain_mouse/humerus_radius/cmd_pos/data: {is_repeat: false, max: 1.0, min: -1.0}
-  /robobrain_mouse/radius_foot/cmd_pos/data: {is_repeat: false, max: 1.0, min: -1.0}
-  /robobrain_mouse/world_humerus/cmd_pos/data: {is_repeat: false, max: 1.0, min: -1.0}
-texts: [/robobrain_mouse/humerus_radius/cmd_pos/data, /robobrain_mouse/radius_foot/cmd_pos/data,
-  /robobrain_mouse/world_humerus/cmd_pos/data]
