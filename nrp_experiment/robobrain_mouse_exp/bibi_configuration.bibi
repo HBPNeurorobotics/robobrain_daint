@@ -2,7 +2,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xmlns="http://schemas.humanbrainproject.eu/SP10/2014/BIBI" xsi:schemaLocation="http://schemas.humanbrainproject.eu/SP10/2014/BIBI ../bibi_configuration.xsd">
   <brainModel>
-    <file>CDP1_brain.py</file>
+    <file>robobrain.py</file>
   </brainModel>
   <bodyModel robotId="robobrain_mouse">robobrain_mouse_with_joystick/model.sdf</bodyModel>
   <transferFunction src="a_muscle_feedback.py" active="true" priority="0" xsi:type="PythonTransferFunction" />
