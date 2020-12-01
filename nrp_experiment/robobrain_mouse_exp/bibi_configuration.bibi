@@ -5,6 +5,7 @@
     <file>robobrain.py</file>
   </brainModel>
   <bodyModel robotId="robobrain_mouse">robobrain_mouse_with_joystick/model.sdf</bodyModel>
+  <mode>SynchronousNestClientSimulation</mode>
   <transferFunction src="a_muscle_feedback.py" active="true" priority="0" xsi:type="PythonTransferFunction" />
   <transferFunction src="controller.py" active="true" priority="0" xsi:type="PythonTransferFunction" />
   <transferFunction src="jointeffort.py" active="true" priority="0" xsi:type="PythonTransferFunction" />

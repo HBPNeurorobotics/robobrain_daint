@@ -84,7 +84,7 @@ start(){
     $iparg \
     -v nrp_user_data:/home/bbpnrsoa/.opt/nrpStorage \
     -v nrp_models:/home/bbpnrsoa/nrp/src/Models \
-    #-v $(pwd)/nrp_experiment:/home/bbpnrsoa/nrp/src/Experiments \
+    -v nrp_experiments:/home/bbpnrsoa/nrp/src/Experiments \
     --name $container $image
   eval setup_$container
   echo -e "${GREEN}$container container is now up and running.${NC}"

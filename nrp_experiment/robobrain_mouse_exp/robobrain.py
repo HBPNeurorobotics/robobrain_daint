@@ -3,13 +3,15 @@
 #please set all flags before run the simulation
 ##
 
+ctx_M1_layers = stim_all_model.main()
+
+circuit = nest.Crate('iaf_cond_alpha', 4)
 
 
-
-start_time = time.time()
-print('======= ROBOBRAIN - Loading the robobrain, Start time: ', start_time)
-
-cicuit = nest.Crate('iaf_cond_alpha')
+# start_time = time.time()
+# print('======= ROBOBRAIN - Loading the robobrain, Start time: ', start_time)
+#
+# cicuit = nest.Crate('iaf_cond_alpha')
 
 # # 1) reads parameters
 # sim_params = fetch_params.read_sim()
