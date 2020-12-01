@@ -84,7 +84,7 @@ start(){
     $iparg \
     -v nrp_user_data:/home/bbpnrsoa/.opt/nrpStorage \
     -v nrp_models:/home/bbpnrsoa/nrp/src/Models \
-    -v nrp_experiments:/home/bbpnrsoa/nrp/src/Experiments \
+    #-v $(pwd)/nrp_experiment:/home/bbpnrsoa/nrp/src/Experiments \
     --name $container $image
   eval setup_$container
   echo -e "${GREEN}$container container is now up and running.${NC}"
@@ -257,7 +257,7 @@ version_check() {
 set -e
 
 is_mac=false
-if grep -qE "(Microsoft|WSL)" /proc/version; then exe=".exe"; 
+if grep -qE "(Microsoft|WSL)" /proc/version; then exe=".exe";
 elif uname -a | grep -q "Darwin"
 then
    is_mac=true;
