@@ -166,7 +166,7 @@ def main():
         simulation_time = sim_params['simDuration'] + sim_params['initial_ignore']
         start_time = time.time()
         print('Simulation Started:', start_time)
-        nest.Simulate(simulation_time)
+        # BF nest.Simulate(simulation_time)
         with open('./log/' + 'performance.txt', 'a') as file:
             file.write('Simulation_Elapse_Time ' + str(time.time() - start_time) + '\n')
         print('Simulation Finish')
