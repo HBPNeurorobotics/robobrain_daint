@@ -1,5 +1,5 @@
 nrp_experiment/robobrain_mouse_exp/robobrain_mouse_with_joystick/rqt
 .idea
 .pyc
-nrp_experiment/robobrain_mouse_exp/resources/log/*
+nrp_experiment/robobrain_mouse_exp/resources/log/performance.txt
 
