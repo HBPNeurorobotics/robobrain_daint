@@ -384,7 +384,7 @@ def get_connection_summary(region_params, layers, region):
     if region=='S1':
         import matplotlib.pyplot as plt
         from scipy import stats
-        S1_internal_connection = np.load('ctx/'+ region_params['S1']['connection_info']['S1toS1'])
+        S1_internal_connection = np.load('/opt/data/ctx/'+ region_params['S1']['connection_info']['S1toS1'])
         columns = ['pre_nodes_num', 'post_nodes_num', 'p_center', 'sigma', 'analy_conn_num', 'conn_num', 'weight_per_neuron', 'weight_per_connection']
         for post_l in layers.keys():
             rows_in = []
@@ -513,7 +513,7 @@ def get_connection_summary(region_params, layers, region):
     elif region=='M1':
         import matplotlib.pyplot as plt
         from scipy import stats
-        S1_internal_connection = np.load('ctx/'+ region_params['M1']['connection_info']['M1toM1'])
+        S1_internal_connection = np.load('/opt/data/ctx/'+ region_params['M1']['connection_info']['M1toM1'])
         columns = ['pre_nodes_num', 'post_nodes_num', 'p_center', 'sigma','analy_conn_num', 'conn_num', 'weight_per_neuron', 'weight_per_connection']
         for post_l in layers.keys():
             rows_in = []
@@ -696,7 +696,7 @@ def gen_neuron_postions_ctx(layer_dep, layer_thickness, nbneuron, S1_layer_size,
         for j in range(Sub_Region_Architecture[1]):
             for k in range(Sub_Region_Architecture[2]):
                 Neuron_pos.append([Neuron_pos_x[i], Neuron_pos_y[j], Neuron_pos_z[k]])
-    #np.savez( 'ctx/'+pop_name, Neuron_pos=Neuron_pos)
+    #np.savez( '/opt/data/ctx/'+pop_name, Neuron_pos=Neuron_pos)
     return Neuron_pos
 
 #-----------------------------------------------------------------------------------
@@ -2002,9 +2002,9 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
         for j in i:
           my_CSN.append([j[0],j[1][:2]]) #use only x and y positions in CSN
     else:
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5A + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5A + '.npz')
       #l5a_pos = Neuron_pos_fileload['Neuron_pos']
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' +  L5B + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' +  L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
       
       Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
@@ -2047,9 +2047,9 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
         for j in i:
           my_CSN.append([j[0],j[1][:2]]) #use only x and y positions in CSN
     else:
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5A + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5A + '.npz')
       #l5a_pos = Neuron_pos_fileload['Neuron_pos']
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5B + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
       
       Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')

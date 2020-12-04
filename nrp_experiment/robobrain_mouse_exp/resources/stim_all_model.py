@@ -96,7 +96,7 @@ def main():
                                                                              # {'layers': ctx_layers, 'params': ctx_params},
                                                                              'M2': None},
                                                                  scalefactor=sim_params['scalefactor'])
-    with open('./log/' + 'performance.txt', 'a') as file:
+    with open('/opt/data/log/' + 'performance.txt', 'a') as file:
         file.write('Network_Building_Time ' + str(time.time() - start_time) + '\n')
         # 3) interconnect regions
     start_time = time.time()
@@ -121,7 +121,7 @@ def main():
     #     _ = nest_routine.connect_region_cb_th(cb_layers_M1, th_layers, 'M1')
     # if sim_regions['BG'] and sim_regions['TH_M1']:
     #     _ = nest_routine.connect_region_bg_th(bg_layers, th_layers)
-    # with open('./log/' + 'performance.txt', 'a') as file:
+    # with open('/opt/data/log/' + 'performance.txt', 'a') as file:
     #     file.write('Interconnect_Regions_Time ' + str(time.time() - start_time) + '\n')
 
     # 2.5) detectors
@@ -167,7 +167,7 @@ def main():
         start_time = time.time()
         print('Simulation Started:', start_time)
         # BF nest.Simulate(simulation_time)
-        with open('./log/' + 'performance.txt', 'a') as file:
+        with open('/opt/data/log/' + 'performance.txt', 'a') as file:
             file.write('Simulation_Elapse_Time ' + str(time.time() - start_time) + '\n')
         print('Simulation Finish')
 
@@ -378,7 +378,7 @@ def main():
         # 5) Check if File exists to run simulation, if it doesn't exists wait some time and then check again.
         trials_nb = sim_params['sim_model'][sim_model_on]['trials_nb']
         trial_counter = 0
-        # file_path = './log/LCR.txt'
+        # file_path = '/opt/data/log/LCR.txt'
 
         total_sim_time = sim_params['sim_model'][sim_model_on]['delta_t'] * trials_nb
         senders, spiketimes = [], []
@@ -675,7 +675,7 @@ def main():
         print('Simulation Started:')
         start_time = time.time()
         nest.Simulate(simulation_time)
-        with open('./log/' + 'performance.txt', 'a') as file:
+        with open('/opt/data/log/' + 'performance.txt', 'a') as file:
             file.write('Simulation_Elapse_Time ' + str(time.time() - start_time) + '\n')
         print('Simulation Finish')
 
@@ -702,7 +702,7 @@ def main():
         print('Simulation Started:')
         start_time = time.time()
         nest.Simulate(simulation_time)
-        with open('./log/' + 'performance.txt', 'a') as file:
+        with open('/opt/data/log/' + 'performance.txt', 'a') as file:
             file.write('Simulation_Elapse_Time ' + str(time.time() - start_time) + '\n')
         print('Simulation Finish')
 
@@ -716,7 +716,7 @@ def main():
         print('Simulation Started:')
         start_time = time.time()
         nest.Simulate(simulation_time)
-        with open('./log/' + 'performance.txt', 'a') as file:
+        with open('/opt/data/log/' + 'performance.txt', 'a') as file:
             file.write('Simulation_Elapse_Time ' + str(time.time() - start_time) + '\n')
         print('Simulation Finish')
 
@@ -734,7 +734,7 @@ def main():
         print('Simulation Started:')
         start_time = time.time()
         nest.Simulate(simulation_time)
-        with open('./log/' + 'performance.txt', 'a') as file:
+        with open('/opt/data/log/' + 'performance.txt', 'a') as file:
             file.write('Simulation_Elapse_Time ' + str(time.time() - start_time) + '\n')
         print('Simulation Finish')
 
@@ -756,7 +756,7 @@ def main():
         print('Simulation Started:')
         start_time = time.time()
         nest.Simulate(simulation_time)
-        with open('./log/' + 'performance.txt', 'a') as file:
+        with open('/opt/data/log/' + 'performance.txt', 'a') as file:
             file.write('Simulation_Elapse_Time ' + str(time.time() - start_time) + '\n')
         print('Simulation Finish')
         if sim_regions['TH_S1']:

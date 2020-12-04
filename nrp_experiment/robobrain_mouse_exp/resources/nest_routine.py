@@ -384,7 +384,7 @@ def get_connection_summary(region_params, layers, region):
     if region=='S1':
         import matplotlib.pyplot as plt
         from scipy import stats
-        S1_internal_connection = np.load('ctx/'+ region_params['S1']['connection_info']['S1toS1'])
+        S1_internal_connection = np.load('/opt/data/ctx/'+ region_params['S1']['connection_info']['S1toS1'])
         columns = ['pre_nodes_num', 'post_nodes_num', 'p_center', 'sigma', 'analy_conn_num', 'conn_num', 'weight_per_neuron', 'weight_per_connection']
         for post_l in layers.keys():
             rows_in = []
@@ -513,7 +513,7 @@ def get_connection_summary(region_params, layers, region):
     elif region=='M1':
         import matplotlib.pyplot as plt
         from scipy import stats
-        S1_internal_connection = np.load('ctx/'+ region_params['M1']['connection_info']['M1toM1'])
+        S1_internal_connection = np.load('/opt/data/ctx/'+ region_params['M1']['connection_info']['M1toM1'])
         columns = ['pre_nodes_num', 'post_nodes_num', 'p_center', 'sigma','analy_conn_num', 'conn_num', 'weight_per_neuron', 'weight_per_connection']
         for post_l in layers.keys():
             rows_in = []
@@ -696,7 +696,7 @@ def gen_neuron_postions_ctx(layer_dep, layer_thickness, nbneuron, S1_layer_size,
         for j in range(Sub_Region_Architecture[1]):
             for k in range(Sub_Region_Architecture[2]):
                 Neuron_pos.append([Neuron_pos_x[i], Neuron_pos_y[j], Neuron_pos_z[k]])
-    #np.savez( 'ctx/'+pop_name, Neuron_pos=Neuron_pos)
+    #np.savez( '/opt/data/ctx/'+pop_name, Neuron_pos=Neuron_pos)
     return Neuron_pos
 
 #-----------------------------------------------------------------------------------
@@ -1063,11 +1063,11 @@ def get_input_column_layers_ctx_M1(ctx_M1_layers):
 ##### General function for M1, S1, M2 ########################################################################
 def get_input_column_layers_ctx(ctx_layers,circle_center,radius_small,my_area): #my_area is 'M1' or 'S1'
     if my_area == 'M1':
-        gid_pos_L5B = np.loadtxt('./log/M1_L5B_PT.txt') #ntop.GetPosition(gid_M1_L5B_PT)
-        gid_pos_L5A = np.loadtxt('./log/M1_L5A_CS.txt') #ntop.GetPosition(gid_M1_L5B_PT)
+        gid_pos_L5B = np.loadtxt('/opt/data/log/M1_L5B_PT.txt') #ntop.GetPosition(gid_M1_L5B_PT)
+        gid_pos_L5A = np.loadtxt('/opt/data/log/M1_L5A_CS.txt') #ntop.GetPosition(gid_M1_L5B_PT)
     if my_area == 'S1':
-        gid_pos_L5B = np.loadtxt('./log/S1_L5B_Pyr.txt') #ntop.GetPosition(gid_M1_L5B_PT)
-        gid_pos_L5A = np.loadtxt('./log/S1_L5A_Pyr.txt') #ntop.GetPosition(gid_M1_L5B_PT)
+        gid_pos_L5B = np.loadtxt('/opt/data/log/S1_L5B_Pyr.txt') #ntop.GetPosition(gid_M1_L5B_PT)
+        gid_pos_L5A = np.loadtxt('/opt/data/log/S1_L5A_Pyr.txt') #ntop.GetPosition(gid_M1_L5B_PT)
         
     print('gids and pos l5a ', len(gid_pos_L5A))
     print('gids and pos l5b ', len(gid_pos_L5B))
@@ -1089,7 +1089,7 @@ def get_columns_data(layer_name,circle_center,radius_small,my_area=None):
     #### example ##########
     #pkj_M1 = get_columns_data('CB_M1_layer_pkj',bg_params['circle_center'] ,bg_params['channels_radius'])
     ##########################
-    gid_pos = np.loadtxt('./log/'+layer_name+'.txt')
+    gid_pos = np.loadtxt('/opt/data/log/'+layer_name+'.txt')
     print('gids and pos  ', len(gid_pos))
     circle_gids = []
     for i in np.arange(len(circle_center)):
@@ -1099,7 +1099,7 @@ def get_columns_data(layer_name,circle_center,radius_small,my_area=None):
     return circle_gids #circle_gids
 
 def get_macro_columns_data(layer_name,circle_center,radius_small,my_area=None):
-    gid_pos = np.loadtxt('./log/'+layer_name+'.txt')
+    gid_pos = np.loadtxt('/opt/data/log/'+layer_name+'.txt')
     print('gids and pos  ', len(gid_pos))
     circle_gids = []
     circle_gids_pos = []
@@ -1110,11 +1110,11 @@ def get_macro_columns_data(layer_name,circle_center,radius_small,my_area=None):
         circle_gids.append([int(x[0]) for x in gid_pos[idx,:]])
         circle_gids_pos.append([x[1:].tolist() for x in gid_pos[idx, :]])
         if len(circle_gids_pos[i]) >= 1:
-            np.savetxt('./log/' + my_area + '_macro_column_' + str(i)+'.txt', circle_gids_pos[i], fmt='%.3f')
+            np.savetxt('/opt/data/log/' + my_area + '_macro_column_' + str(i)+'.txt', circle_gids_pos[i], fmt='%.3f')
     return circle_gids #circle_gids
 
 def get_micro_columns_data(layer_name,circle_center,radius_small,my_area=None):
-    gid_pos = np.loadtxt('./log/'+layer_name+'.txt')
+    gid_pos = np.loadtxt('/opt/data/log/'+layer_name+'.txt')
     print('gids and pos  ', len(gid_pos))
     circle_gids = []
     circle_gids_pos = []
@@ -1124,7 +1124,7 @@ def get_micro_columns_data(layer_name,circle_center,radius_small,my_area=None):
         circle_gids.append([int(x[0]) for x in gid_pos[idx,:]])
         circle_gids_pos.append([x[1:].tolist() for x in gid_pos[idx, :]])
         if len(circle_gids_pos[i]) >= 1:
-            np.savetxt('./log/' + my_area + '_micro_column_' + str(i)+'.txt', circle_gids_pos[i], fmt='%.3f')
+            np.savetxt('/opt/data/log/' + my_area + '_micro_column_' + str(i)+'.txt', circle_gids_pos[i], fmt='%.3f')
     return circle_gids #circle_gids
 
 
@@ -1278,7 +1278,7 @@ def get_channel_centers(bg_params,hex_center=[0,0],ci=6,hex_radius=0.240):
                 x_y = hex_corner(hex_center,hex_radius,i) #center, radius, vertex id # gives x,y of an hexagon vertexs.
                 center_aux.append(x_y)
                             #bg_params['circle_center'].append(x_y)
-            np.savetxt('./log/centers.txt',center_aux) #save the centers.
+            np.savetxt('/opt/data/log/centers.txt',center_aux) #save the centers.
             print('generated centers: ',center_aux)
     return center_aux
 
@@ -1294,7 +1294,7 @@ def get_macro_channel_centers(bg_params,hex_center=[0,0],ci=7,hex_radius=0.240):
             for i in np.arange(ci-1):
                 x_y = hex_corner(hex_center,hex_radius,i) #center, radius, vertex id # gives x,y of an hexagon vertexs.
                 center_aux.append(x_y)
-            np.savetxt('./log/macro_centers.txt',center_aux) #save the centers.
+            np.savetxt('/opt/data/log/macro_centers.txt',center_aux) #save the centers.
             print('generated centers: ',center_aux)
     return center_aux
 
@@ -1568,7 +1568,7 @@ def grid_positions(nbCh, sim_pts,a0,a1,b0,b1):
 
 ### function to get connections in format source,target,weigth and save as txt ######
 def get_connections_to_file(source_name,target_name,source_layer,target_layer):
-    np.savetxt('./log/'+source_name+'_to_'+target_name+'.txt',nest.GetStatus(nest.GetConnections(source=nest.GetNodes(source_layer)[0],target=nest.GetNodes(target_layer)[0]),keys={'source','target','weight'}))
+    np.savetxt('/opt/data/log/'+source_name+'_to_'+target_name+'.txt',nest.GetStatus(nest.GetConnections(source=nest.GetNodes(source_layer)[0],target=nest.GetNodes(target_layer)[0]),keys={'source','target','weight'}))
 
 
 #-------------------------------------------------------------------------------
@@ -1601,7 +1601,7 @@ def create_layers_bg(bg_params, nucleus, fake=0, mirror_neurons=None, mirror_pos
 
   if nucleus=='GPi_fake':
     positions_z = pyrngs[0].uniform(0., 0.5, pop_size).tolist()
-    positions = np.loadtxt('./log/'+nucleus[:3]+'.txt') # retrive positions x,y from GPi
+    positions = np.loadtxt('/opt/data/log/'+nucleus[:3]+'.txt') # retrive positions x,y from GPi
     position_nD = [[positions[i][1], positions[i][2], positions_z[i]] for i in range(len(positions))]
     my_extent = my_extent + [1.]
     my_center = my_center + [0.]
@@ -1882,8 +1882,8 @@ def mass_mirror_bg(bg_params, nameSrc, nameTgt,source, synapse_label, receptor_t
     
     #log.debug("CONNECT %s", "X"*100)
     
-    #np.savetxt('./log/source.txt',ampa_conns.source)
-    #np.savetxt('./log/target.txt',ampa_conns.target)
+    #np.savetxt('/opt/data/log/source.txt',ampa_conns.source)
+    #np.savetxt('/opt/data/log/target.txt',ampa_conns.target)
     
     nest.SetDefaults('static_synapse_lbl', {'receptor_type': receptor_type, 'weight': weight,
                  'delay':delay, 'synapse_label':synapse_label})
@@ -1986,7 +1986,7 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
   #  for i in np.arange(6): # this number '6' should be a parameter.
   #    x_y = hex_corner([0,0],0.240,i) #center, radius, vertex id
   #    circle_center.append(x_y)
-  #  np.savetxt('./log/centers.txt',circle_center) #save the centers.
+  #  np.savetxt('/opt/data/log/centers.txt',circle_center) #save the centers.
 
   if area_lbl=='M1':
     L5A = area_lbl+'_'+'L5A_CS'
@@ -2002,14 +2002,14 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
         for j in i:
           my_CSN.append([j[0],j[1][:2]]) #use only x and y positions in CSN
     else:
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5A + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5A + '.npz')
       #l5a_pos = Neuron_pos_fileload['Neuron_pos']
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' +  L5B + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' +  L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
       
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5A+'.txt')
       l5a_pos = Neuron_pos_fileload[:,1:]
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5B+'.txt')
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5B+'.txt')
       l5b_pos = Neuron_pos_fileload[:,1:]
 
       l5a_gids = nest.GetNodes(source_layer[L5A])[0]
@@ -2047,14 +2047,14 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
         for j in i:
           my_CSN.append([j[0],j[1][:2]]) #use only x and y positions in CSN
     else:
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5A + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5A + '.npz')
       #l5a_pos = Neuron_pos_fileload['Neuron_pos']
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5B + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
       
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5A+'.txt')
       l5a_pos = Neuron_pos_fileload[:,1:]
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5B+'.txt')
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5B+'.txt')
       l5b_pos = Neuron_pos_fileload[:,1:]
       
       l5a_gids = nest.GetNodes(source_layer[L5A])[0]
