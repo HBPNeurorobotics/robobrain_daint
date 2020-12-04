@@ -100,29 +100,29 @@ def main():
         file.write('Network_Building_Time ' + str(time.time() - start_time) + '\n')
         # 3) interconnect regions
     start_time = time.time()
-    if sim_regions['S1'] and sim_regions['M1']:
-        pass
-        # _ = nest_routine.connect_region_ctx_cb(ctx_layers['S1_L5B_Pyr'], cb_layers_S1['CB_S1_layer_pons'], 'S1')
-    if sim_regions['S1'] and sim_regions['CB_S1']:
-        _ = nest_routine.connect_region_ctx_cb(ctx_layers['S1_L5B_Pyr'], cb_layers_S1['CB_S1_layer_pons'], 'S1')
-    if sim_regions['M1'] and sim_regions['CB_M1']:
-        _ = nest_routine.connect_region_ctx_cb(ctx_M1_layers['M1_L5B_PT'], cb_layers_M1['CB_M1_layer_pons'], 'M1')
-    if sim_regions['S1'] and sim_regions['TH_S1']:
-        _ = nest_routine.connect_region_ctx_th(ctx_layers, th_layers, 'S1')
-    if sim_regions['M1'] and sim_regions['TH_M1']:
-        _ = nest_routine.connect_region_ctx_th(ctx_M1_layers, th_layers, 'M1')
-    if sim_regions['TH_S1'] and sim_regions['S1']:
-        _ = nest_routine.connect_region_th_ctx(th_layers, ctx_layers, 'S1')
-    if sim_regions['TH_M1'] and sim_regions['M1']:
-        _ = nest_routine.connect_region_th_ctx(th_layers, ctx_M1_layers, 'M1')
-    if sim_regions['CB_S1'] and sim_regions['S1']:
-        _ = nest_routine.connect_region_cb_th(cb_layers_S1, th_layers, 'S1')
-    if sim_regions['CB_M1'] and sim_regions['M1']:
-        _ = nest_routine.connect_region_cb_th(cb_layers_M1, th_layers, 'M1')
-    if sim_regions['BG'] and sim_regions['TH_M1']:
-        _ = nest_routine.connect_region_bg_th(bg_layers, th_layers)
-    with open('./log/' + 'performance.txt', 'a') as file:
-        file.write('Interconnect_Regions_Time ' + str(time.time() - start_time) + '\n')
+    # BFFFFFFFFFF if sim_regions['S1'] and sim_regions['M1']:
+    #     pass
+    #     # _ = nest_routine.connect_region_ctx_cb(ctx_layers['S1_L5B_Pyr'], cb_layers_S1['CB_S1_layer_pons'], 'S1')
+    # if sim_regions['S1'] and sim_regions['CB_S1']:
+    #     _ = nest_routine.connect_region_ctx_cb(ctx_layers['S1_L5B_Pyr'], cb_layers_S1['CB_S1_layer_pons'], 'S1')
+    # if sim_regions['M1'] and sim_regions['CB_M1']:
+    #     _ = nest_routine.connect_region_ctx_cb(ctx_M1_layers['M1_L5B_PT'], cb_layers_M1['CB_M1_layer_pons'], 'M1')
+    # if sim_regions['S1'] and sim_regions['TH_S1']:
+    #     _ = nest_routine.connect_region_ctx_th(ctx_layers, th_layers, 'S1')
+    # if sim_regions['M1'] and sim_regions['TH_M1']:
+    #     _ = nest_routine.connect_region_ctx_th(ctx_M1_layers, th_layers, 'M1')
+    # if sim_regions['TH_S1'] and sim_regions['S1']:
+    #     _ = nest_routine.connect_region_th_ctx(th_layers, ctx_layers, 'S1')
+    # if sim_regions['TH_M1'] and sim_regions['M1']:
+    #     _ = nest_routine.connect_region_th_ctx(th_layers, ctx_M1_layers, 'M1')
+    # if sim_regions['CB_S1'] and sim_regions['S1']:
+    #     _ = nest_routine.connect_region_cb_th(cb_layers_S1, th_layers, 'S1')
+    # if sim_regions['CB_M1'] and sim_regions['M1']:
+    #     _ = nest_routine.connect_region_cb_th(cb_layers_M1, th_layers, 'M1')
+    # if sim_regions['BG'] and sim_regions['TH_M1']:
+    #     _ = nest_routine.connect_region_bg_th(bg_layers, th_layers)
+    # with open('./log/' + 'performance.txt', 'a') as file:
+    #     file.write('Interconnect_Regions_Time ' + str(time.time() - start_time) + '\n')
 
     # 2.5) detectors
 
@@ -176,6 +176,15 @@ def main():
                 rate = nest_routine.average_fr(detectors[layer_name], sim_params['simDuration'], len(
                     bg_layers[layer_name]))  # nest_routine.count_layer(bg_layers[layer_name]))
                 print('Layer ' + layer_name + " fires at " + str(rate) + " Hz")
+
+        print('motor cortex is')
+        print(ctx_M1_layers)
+        print("motor cortex M1_L5A_CC is")
+        print(ctx_M1_layers['M1_L5A_CC'])
+        print('get status on layer')
+        print(nest.GetStatus(ctx_M1_layers))
+
+
 
         # if sim_regions['BG']:
         #    for layer_name in bg_layers.keys():
@@ -773,6 +782,9 @@ def main():
 
     else:
         print('wrong model set')
+
+
+    return ctx_M1_layers
 
 
 if __name__ == '__main__':

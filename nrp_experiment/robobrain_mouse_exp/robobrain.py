@@ -7,4 +7,11 @@ nest.ResetKernel()
 # Initializing Neurons, Brain connections and FrequencyDetectors
 ctx_M1_layers = stim_all_model.main()
 
-circuit = nest.Create('iaf_cond_alpha', 4)
+
+a = 3.0
+
+b = 3.2
+
+
+circuit = ctx_M1_layers # nest.Create('iaf_cond_alpha', 4)
+
