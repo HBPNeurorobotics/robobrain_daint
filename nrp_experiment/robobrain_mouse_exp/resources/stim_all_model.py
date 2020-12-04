@@ -177,14 +177,6 @@ def main():
                     bg_layers[layer_name]))  # nest_routine.count_layer(bg_layers[layer_name]))
                 print('Layer ' + layer_name + " fires at " + str(rate) + " Hz")
 
-        print('motor cortex is')
-        print(ctx_M1_layers)
-        print("motor cortex M1_L5A_CC is")
-        print(ctx_M1_layers['M1_L5A_CC'])
-        print('get status on layer')
-        print(nest.GetStatus(ctx_M1_layers))
-
-
 
         # if sim_regions['BG']:
         #    for layer_name in bg_layers.keys():
