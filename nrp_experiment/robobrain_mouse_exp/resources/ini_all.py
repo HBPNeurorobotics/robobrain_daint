@@ -176,7 +176,7 @@ def instantiate_ctx_M2(ctx_M2_params):
           conn_num= len(nest.GetConnections(nest.GetNodes(ctx_M2_layers[pre_layer_name])[0], nest.GetNodes(ctx_M2_layers[post_layer_name])[0]))
           ctx_M2_layers_conn[pre_layer_name][post_layer_name]={'conn_num':conn_num, 'neuron_num': len(nest.GetNodes(ctx_M2_layers[pre_layer_name])[0])}
 
-  with open('log/ctx.log', 'a+') as f:
+  with open('/opt/data/log/ctx.log', 'a+') as f:
       for pre_layer_name in ctx_M2_layers.keys():
           count_in  = 0
           count_out = 0
