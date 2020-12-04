@@ -10,9 +10,7 @@
 
 def read_sim():
   try:
-    from runpy import run_path
-    file_params = run_path('simParams.py', init_globals=globals())
-    sim_params = file_params['simParams']
+    from simParams import sim_params
     return sim_params
   except:
     raise ImportError('The simulation parameters could not be loaded. Please make sure that the file `simParams.py` exists and is a valid python defining the variable "simParams".')
@@ -20,9 +18,7 @@ def read_sim():
 
 def read_ctx():
     try:
-        from runpy import run_path
-        file_params = run_path('ctxParams.py', init_globals=globals())
-        ctx_params = file_params['ctxParams']
+        from ctxParams import ctx_params
         return ctx_params
     except:
         raise ImportError(
@@ -31,9 +27,7 @@ def read_ctx():
 
 def read_ctx_M1():
     try:
-        from runpy import run_path
-        file_params = run_path('ctxM1Params.py', init_globals=globals())
-        ctx_M1_params = file_params['ctxM1Params']
+        from ctxM1Params import ctx_M1_params
         return ctx_M1_params
     except:
         raise ImportError(
@@ -53,9 +47,7 @@ def read_ctx_M2():
     
 def read_th():
     try:
-        from runpy import run_path
-        file_params = run_path('thParams.py', init_globals=globals())
-        th_params = file_params['thParams']
+        from thParams import thParams
         return th_params
     except:
         raise ImportError(
@@ -74,10 +66,8 @@ def read_bg():
 
 def read_conn():
     try:
-        from runpy import run_path
-        file_params = run_path('connParams.py', init_globals=globals())
-        ctx_params = file_params['connParams']
-        return ctx_params
+        from connParams import connParams
+        return connParams
     except:
         raise ImportError(
             'The cortex-region parameters could not be loaded. Please make sure that the file `baseCONNParams.py` exists and is a valid python defining the variable "connParams".')
