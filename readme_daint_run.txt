@@ -5,6 +5,10 @@ ssh -A daint
 salloc -N1 -C 'mc&startx' -A ich004m --time=02:00:00 --mem=120GB
 scontrol show jobid <JOBID> | grep NodeList
 
+
+benefe23/nrp_with_nest_client:wip_update_yml_sunday_robobrain
+
+
 ## start nrp backend
 module load sarus 
 sarus pull benefe23/nrp_with_nest_client:wip_update_yml_sunday_robobrain \
@@ -53,7 +57,7 @@ sarus pull christopherbignamini/nestsim:benedikt_restricted_python
 sarus run --tty --mount=type=bind,source=$HOME,dst=$HOME \
       christopherbignamini/nestsim:benedikt_restricted_python \
       /bin/bash
-cp $HOME/robobrain_nrp/nrp_experiment/robobrain /opt/data
+cp -r $HOME/robobrain_nrp/nrp_experiment/robobrain_mouse_exp/resources /opt/data
 . /opt/nest/bin/nest_vars.sh
 nest-server start -o
 
@@ -72,6 +76,10 @@ srun -v --account ich004m -C mc -N1 -n1 --pty /apps/daint/system/opt/sarus/1.1.0
 --mount=type=bind,source=$HOME,dst=$HOME \
 benefe23/nrp_with_nest_client:wip_update_yml_sunday_robobrain \
 bash
+
+
+## Debug backend container locally
+docker run -it --entrypoint /bin/bash benefe23/nrp_with_nest_client:wip_update_yml_sunday_robobrain 
 
 
 ## Start frontend
