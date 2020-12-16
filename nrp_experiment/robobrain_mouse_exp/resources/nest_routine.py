@@ -663,7 +663,7 @@ def save_layers_position(layer_name, layer, positions):
     gid_and_positions=np.column_stack((positions, ids))
     if not os.path.exists('/opt/data/log/'+layer_name+'.txt'):
         np.savetxt('/opt/data/log/'+layer_name+'.txt', gid_and_positions, fmt='%1.3f')
-    
+
     # -------------------------------------------------------------------------------
     #randomizing the membarne potential
     #
@@ -1068,7 +1068,7 @@ def get_input_column_layers_ctx(ctx_layers,circle_center,radius_small,my_area): 
     if my_area == 'S1':
         gid_pos_L5B = np.loadtxt('/opt/data/log/S1_L5B_Pyr.txt') #ntop.GetPosition(gid_M1_L5B_PT)
         gid_pos_L5A = np.loadtxt('/opt/data/log/S1_L5A_Pyr.txt') #ntop.GetPosition(gid_M1_L5B_PT)
-        
+
     print('gids and pos l5a ', len(gid_pos_L5A))
     print('gids and pos l5b ', len(gid_pos_L5B))
 
@@ -1881,17 +1881,10 @@ def mass_mirror_bg(bg_params, nameSrc, nameTgt,source, synapse_label, receptor_t
       delay = np.array(ampa_conns.delay).flatten()
 
     #log.debug("CONNECT %s", "X"*100)
-<<<<<<< HEAD
 
-    #np.savetxt('./log/source.txt',ampa_conns.source)
-    #np.savetxt('./log/target.txt',ampa_conns.target)
-
-=======
-    
     #np.savetxt('/opt/data/log/source.txt',ampa_conns.source)
     #np.savetxt('/opt/data/log/target.txt',ampa_conns.target)
-    
->>>>>>> 92ccb2e17526e3ef5974577e37bf3fca8fc89581
+
     nest.SetDefaults('static_synapse_lbl', {'receptor_type': receptor_type, 'weight': weight,
                  'delay':delay, 'synapse_label':synapse_label})
     syn_dict = {'synapse_model': 'static_synapse_lbl'}
@@ -2017,7 +2010,7 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
 
       Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
 =======
-      
+
       Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5A+'.txt')
 >>>>>>> 92ccb2e17526e3ef5974577e37bf3fca8fc89581
       l5a_pos = Neuron_pos_fileload[:,1:]
@@ -2067,7 +2060,7 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
 
       Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
 =======
-      
+
       Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5A+'.txt')
 >>>>>>> 92ccb2e17526e3ef5974577e37bf3fca8fc89581
       l5a_pos = Neuron_pos_fileload[:,1:]
