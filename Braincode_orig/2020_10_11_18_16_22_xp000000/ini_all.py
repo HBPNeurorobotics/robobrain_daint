@@ -52,7 +52,7 @@ def instantiate_ctx(ctx_params,scalefactor, initial_ignore, region_name):
   # make connections
   print("Start to connect the layers")
   ctx_layers = collections.OrderedDict(sorted(ctx_layers.items(), key=lambda t: t[0]))
-  internal_connection = np.load('ctx/'+ ctx_params[region_name]['connection_info']['internal'], allow_pickle=True)
+  internal_connection = np.load('/opt/data/ctx/'+ ctx_params[region_name]['connection_info']['internal'], allow_pickle=True)
   from collections import defaultdict
   for pre_layer_name in ctx_layers.keys():
     for post_layer_name in ctx_layers.keys():
@@ -112,7 +112,7 @@ def instantiate_ctx_M1(ctx_M1_params,scalefactor, initial_ignore):
         print('Error: Unknow E or I')
   
   print("Start to connect the layers")
-  M1_internal_connection = np.load('ctx/'+ ctx_M1_params['M1']['connection_info']['M1toM1'], allow_pickle=True)
+  M1_internal_connection = np.load('/opt/data/ctx/'+ ctx_M1_params['M1']['connection_info']['M1toM1'], allow_pickle=True)
   from collections import defaultdict
   for pre_layer_name in ctx_M1_layers.keys():
     for post_layer_name in ctx_M1_layers.keys():
@@ -137,7 +137,7 @@ def instantiate_ctx_M2(ctx_M2_params):
   for l in range(len(M2_Layer_Name)):
     print('###########################################')
     print('start to create layer: ' + M2_Layer_Name[l])
-    Neuron_pos_fileload = np.load('ctx/M2/'+ ctx_M2_params['M2']['position_type_info'][M2_Layer_Name[l]])
+    Neuron_pos_fileload = np.load('/opt/data/ctx/M2/'+ ctx_M2_params['M2']['position_type_info'][M2_Layer_Name[l]])
     Neuron_pos = Neuron_pos_fileload['Neuron_pos']
     print('Network Architecture:')
     print(Neuron_pos.shape)
@@ -165,7 +165,7 @@ def instantiate_ctx_M2(ctx_M2_params):
         print('Error: Unknow E or I')
   
   print("Start to connect the layers")
-  M2_internal_connection = np.load('ctx/M2/'+ ctx_M2_params['M2']['connection_info']['M2toM2'])
+  M2_internal_connection = np.load('/opt/data/ctx/M2/'+ ctx_M2_params['M2']['connection_info']['M2toM2'])
 
   from collections import defaultdict
   ctx_M2_layers_conn = defaultdict(dict)
@@ -176,7 +176,7 @@ def instantiate_ctx_M2(ctx_M2_params):
           conn_num= len(nest.GetConnections(nest.GetNodes(ctx_M2_layers[pre_layer_name])[0], nest.GetNodes(ctx_M2_layers[post_layer_name])[0]))
           ctx_M2_layers_conn[pre_layer_name][post_layer_name]={'conn_num':conn_num, 'neuron_num': len(nest.GetNodes(ctx_M2_layers[pre_layer_name])[0])}
 
-  with open('log/ctx.log', 'a+') as f:
+  with open('/opt/data/log/ctx.log', 'a+') as f:
       for pre_layer_name in ctx_M2_layers.keys():
           count_in  = 0
           count_out = 0

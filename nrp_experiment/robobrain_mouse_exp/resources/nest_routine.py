@@ -171,7 +171,7 @@ def average_fr(detector, simDuration, n):
     return detector.n_events / (float(simDuration) * float(n) / 1000.)
 
 
-#     root = os.path.abspath('log/')
+#     root = os.path.abspath('/opt/data/log/')
 #     results_filelist = []
 #     results_filelist.append(findfile(detector, root))
 # #    print (results_filelist[0])
@@ -204,7 +204,7 @@ def get_firing_rate_from_gdf_files(layer_name, layer_gid, simDuration, neuron_nb
         macro_columns_activity = []
         macro_columns_spikes = []
         pop,pop_gid = {},{}
-        gdf_path = 'log/'
+        gdf_path = '/opt/data/log/'
         onlyfiles = [f for f in os.listdir(gdf_path) if os.path.isfile(os.path.join(gdf_path, f))]
         is_first = True
         for i in onlyfiles:
@@ -242,7 +242,7 @@ def get_firing_rate_macro_column(layer_name, macro_column_neuron_gids, start_tim
         macro_columns_activity = []
         macro_columns_spikes = []
         pop,pop_gid = {},{}
-        gdf_path = 'log/'
+        gdf_path = '/opt/data/log/'
         onlyfiles = [f for f in os.listdir(gdf_path) if os.path.isfile(os.path.join(gdf_path, f))]
         is_first = True
         for i in onlyfiles:
@@ -306,7 +306,7 @@ def get_firing_rate_micro_column(layer_name, micro_column_neuron_gids, start_tim
         micro_columns_activity = []
         micro_columns_spikes = []
         pop,pop_gid = {},{}
-        gdf_path = 'log/'
+        gdf_path = '/opt/data/log/'
         onlyfiles = [f for f in os.listdir(gdf_path) if os.path.isfile(os.path.join(gdf_path, f))]
         is_first = True
         for i in onlyfiles:
@@ -384,7 +384,7 @@ def get_connection_summary(region_params, layers, region):
     if region=='S1':
         import matplotlib.pyplot as plt
         from scipy import stats
-        S1_internal_connection = np.load('ctx/'+ region_params['S1']['connection_info']['S1toS1'])
+        S1_internal_connection = np.load('/opt/data/ctx/'+ region_params['S1']['connection_info']['S1toS1'])
         columns = ['pre_nodes_num', 'post_nodes_num', 'p_center', 'sigma', 'analy_conn_num', 'conn_num', 'weight_per_neuron', 'weight_per_connection']
         for post_l in layers.keys():
             rows_in = []
@@ -445,7 +445,7 @@ def get_connection_summary(region_params, layers, region):
                 ax.yaxis.set_visible(False)
                 ax.title.set_text(post_l + ' cell in degree connections')
                 plt.table(cellText=cell_text_in , rowLabels=rows_in,colLabels=columns, loc='center')
-                plt.savefig('log/'+post_l + '_cell_in_degree_connections.png')
+                plt.savefig('/opt/data/log/'+post_l + '_cell_in_degree_connections.png')
 
         for pre_l in layers.keys():
             rows_out = []
@@ -508,12 +508,12 @@ def get_connection_summary(region_params, layers, region):
             ax.yaxis.set_visible(False)
             ax.title.set_text(pre_l+' cell out degree connections')
             plt.table(cellText=cell_text_out, rowLabels=rows_out, colLabels=columns, loc='center')
-            plt.savefig('log/'+pre_l+'_cell_out_degree_connections.png')
+            plt.savefig('/opt/data/log/'+pre_l+'_cell_out_degree_connections.png')
             #table_in = plt.figure()
     elif region=='M1':
         import matplotlib.pyplot as plt
         from scipy import stats
-        S1_internal_connection = np.load('ctx/'+ region_params['M1']['connection_info']['M1toM1'])
+        S1_internal_connection = np.load('/opt/data/ctx/'+ region_params['M1']['connection_info']['M1toM1'])
         columns = ['pre_nodes_num', 'post_nodes_num', 'p_center', 'sigma','analy_conn_num', 'conn_num', 'weight_per_neuron', 'weight_per_connection']
         for post_l in layers.keys():
             rows_in = []
@@ -574,7 +574,7 @@ def get_connection_summary(region_params, layers, region):
                 ax.yaxis.set_visible(False)
                 ax.title.set_text(post_l + ' cell in degree connections')
                 plt.table(cellText=cell_text_in , rowLabels=rows_in,colLabels=columns, loc='center')
-                plt.savefig('log/'+post_l + '_cell_in_degree_connections.png')
+                plt.savefig('/opt/data/log/'+post_l + '_cell_in_degree_connections.png')
 
         for pre_l in layers.keys():
             rows_out = []
@@ -638,7 +638,7 @@ def get_connection_summary(region_params, layers, region):
             ax.yaxis.set_visible(False)
             ax.title.set_text(pre_l+' cell out degree connections')
             plt.table(cellText=cell_text_out, rowLabels=rows_out, colLabels=columns, loc='center')
-            plt.savefig('log/'+pre_l+'_cell_out_degree_connections.png')
+            plt.savefig('/opt/data/log/'+pre_l+'_cell_out_degree_connections.png')
             #table_in = plt.figure()
 
 # -------------------------------------------------------------------------------
@@ -661,15 +661,15 @@ def get_local_nodes(nodes):
 def save_layers_position(layer_name, layer, positions):
     ids = np.array(layer.tolist())   # FIXME THIS IS BUG #1361  should not use tolist
     gid_and_positions=np.column_stack((positions, ids))
-    if not os.path.exists('log/'+layer_name+'.txt'):
-        np.savetxt('log/'+layer_name+'.txt', gid_and_positions, fmt='%1.3f')
-
-# -------------------------------------------------------------------------------
-#randomizing the membarne potential
-#
-# -------------------------------------------------------------------------------
-def randomizing_mp(layer, Vth, Vrest):
-    layer.set({"V_m": Vrest + (Vth - Vrest) * np.random.rand()})
+    if not os.path.exists('/opt/data/log/'+layer_name+'.txt'):
+        np.savetxt('/opt/data/log/'+layer_name+'.txt', gid_and_positions, fmt='%1.3f')
+    
+    # -------------------------------------------------------------------------------
+    #randomizing the membarne potential
+    #
+    # -------------------------------------------------------------------------------
+    def randomizing_mp(layer, Vth, Vrest):
+        layer.set({"V_m": Vrest + (Vth - Vrest) * np.random.rand()})
 
 
 #######
@@ -696,7 +696,7 @@ def gen_neuron_postions_ctx(layer_dep, layer_thickness, nbneuron, S1_layer_size,
         for j in range(Sub_Region_Architecture[1]):
             for k in range(Sub_Region_Architecture[2]):
                 Neuron_pos.append([Neuron_pos_x[i], Neuron_pos_y[j], Neuron_pos_z[k]])
-    #np.savez( 'ctx/'+pop_name, Neuron_pos=Neuron_pos)
+    #np.savez( '/opt/data/ctx/'+pop_name, Neuron_pos=Neuron_pos)
     return Neuron_pos
 
 #-----------------------------------------------------------------------------------
@@ -1063,12 +1063,12 @@ def get_input_column_layers_ctx_M1(ctx_M1_layers):
 ##### General function for M1, S1, M2 ########################################################################
 def get_input_column_layers_ctx(ctx_layers,circle_center,radius_small,my_area): #my_area is 'M1' or 'S1'
     if my_area == 'M1':
-        gid_pos_L5B = np.loadtxt('./log/M1_L5B_PT.txt') #ntop.GetPosition(gid_M1_L5B_PT)
-        gid_pos_L5A = np.loadtxt('./log/M1_L5A_CS.txt') #ntop.GetPosition(gid_M1_L5B_PT)
+        gid_pos_L5B = np.loadtxt('/opt/data/log/M1_L5B_PT.txt') #ntop.GetPosition(gid_M1_L5B_PT)
+        gid_pos_L5A = np.loadtxt('/opt/data/log/M1_L5A_CS.txt') #ntop.GetPosition(gid_M1_L5B_PT)
     if my_area == 'S1':
-        gid_pos_L5B = np.loadtxt('./log/S1_L5B_Pyr.txt') #ntop.GetPosition(gid_M1_L5B_PT)
-        gid_pos_L5A = np.loadtxt('./log/S1_L5A_Pyr.txt') #ntop.GetPosition(gid_M1_L5B_PT)
-
+        gid_pos_L5B = np.loadtxt('/opt/data/log/S1_L5B_Pyr.txt') #ntop.GetPosition(gid_M1_L5B_PT)
+        gid_pos_L5A = np.loadtxt('/opt/data/log/S1_L5A_Pyr.txt') #ntop.GetPosition(gid_M1_L5B_PT)
+        
     print('gids and pos l5a ', len(gid_pos_L5A))
     print('gids and pos l5b ', len(gid_pos_L5B))
 
@@ -1089,7 +1089,7 @@ def get_columns_data(layer_name,circle_center,radius_small,my_area=None):
     #### example ##########
     #pkj_M1 = get_columns_data('CB_M1_layer_pkj',bg_params['circle_center'] ,bg_params['channels_radius'])
     ##########################
-    gid_pos = np.loadtxt('./log/'+layer_name+'.txt')
+    gid_pos = np.loadtxt('/opt/data/log/'+layer_name+'.txt')
     print('gids and pos  ', len(gid_pos))
     circle_gids = []
     for i in np.arange(len(circle_center)):
@@ -1099,7 +1099,7 @@ def get_columns_data(layer_name,circle_center,radius_small,my_area=None):
     return circle_gids #circle_gids
 
 def get_macro_columns_data(layer_name,circle_center,radius_small,my_area=None):
-    gid_pos = np.loadtxt('./log/'+layer_name+'.txt')
+    gid_pos = np.loadtxt('/opt/data/log/'+layer_name+'.txt')
     print('gids and pos  ', len(gid_pos))
     circle_gids = []
     circle_gids_pos = []
@@ -1110,11 +1110,11 @@ def get_macro_columns_data(layer_name,circle_center,radius_small,my_area=None):
         circle_gids.append([int(x[0]) for x in gid_pos[idx,:]])
         circle_gids_pos.append([x[1:].tolist() for x in gid_pos[idx, :]])
         if len(circle_gids_pos[i]) >= 1:
-            np.savetxt('./log/' + my_area + '_macro_column_' + str(i)+'.txt', circle_gids_pos[i], fmt='%.3f')
+            np.savetxt('/opt/data/log/' + my_area + '_macro_column_' + str(i)+'.txt', circle_gids_pos[i], fmt='%.3f')
     return circle_gids #circle_gids
 
 def get_micro_columns_data(layer_name,circle_center,radius_small,my_area=None):
-    gid_pos = np.loadtxt('./log/'+layer_name+'.txt')
+    gid_pos = np.loadtxt('/opt/data/log/'+layer_name+'.txt')
     print('gids and pos  ', len(gid_pos))
     circle_gids = []
     circle_gids_pos = []
@@ -1124,7 +1124,7 @@ def get_micro_columns_data(layer_name,circle_center,radius_small,my_area=None):
         circle_gids.append([int(x[0]) for x in gid_pos[idx,:]])
         circle_gids_pos.append([x[1:].tolist() for x in gid_pos[idx, :]])
         if len(circle_gids_pos[i]) >= 1:
-            np.savetxt('./log/' + my_area + '_micro_column_' + str(i)+'.txt', circle_gids_pos[i], fmt='%.3f')
+            np.savetxt('/opt/data/log/' + my_area + '_micro_column_' + str(i)+'.txt', circle_gids_pos[i], fmt='%.3f')
     return circle_gids #circle_gids
 
 
@@ -1278,7 +1278,7 @@ def get_channel_centers(bg_params,hex_center=[0,0],ci=6,hex_radius=0.240):
                 x_y = hex_corner(hex_center,hex_radius,i) #center, radius, vertex id # gives x,y of an hexagon vertexs.
                 center_aux.append(x_y)
                             #bg_params['circle_center'].append(x_y)
-            np.savetxt('./log/centers.txt',center_aux) #save the centers.
+            np.savetxt('/opt/data/log/centers.txt',center_aux) #save the centers.
             print('generated centers: ',center_aux)
     return center_aux
 
@@ -1294,7 +1294,7 @@ def get_macro_channel_centers(bg_params,hex_center=[0,0],ci=7,hex_radius=0.240):
             for i in np.arange(ci-1):
                 x_y = hex_corner(hex_center,hex_radius,i) #center, radius, vertex id # gives x,y of an hexagon vertexs.
                 center_aux.append(x_y)
-            np.savetxt('./log/macro_centers.txt',center_aux) #save the centers.
+            np.savetxt('/opt/data/log/macro_centers.txt',center_aux) #save the centers.
             print('generated centers: ',center_aux)
     return center_aux
 
@@ -1568,7 +1568,7 @@ def grid_positions(nbCh, sim_pts,a0,a1,b0,b1):
 
 ### function to get connections in format source,target,weigth and save as txt ######
 def get_connections_to_file(source_name,target_name,source_layer,target_layer):
-    np.savetxt('./log/'+source_name+'_to_'+target_name+'.txt',nest.GetStatus(nest.GetConnections(source=nest.GetNodes(source_layer)[0],target=nest.GetNodes(target_layer)[0]),keys={'source','target','weight'}))
+    np.savetxt('/opt/data/log/'+source_name+'_to_'+target_name+'.txt',nest.GetStatus(nest.GetConnections(source=nest.GetNodes(source_layer)[0],target=nest.GetNodes(target_layer)[0]),keys={'source','target','weight'}))
 
 
 #-------------------------------------------------------------------------------
@@ -1601,7 +1601,7 @@ def create_layers_bg(bg_params, nucleus, fake=0, mirror_neurons=None, mirror_pos
 
   if nucleus=='GPi_fake':
     positions_z = pyrngs[0].uniform(0., 0.5, pop_size).tolist()
-    positions = np.loadtxt('./log/'+nucleus[:3]+'.txt') # retrive positions x,y from GPi
+    positions = np.loadtxt('/opt/data/log/'+nucleus[:3]+'.txt') # retrive positions x,y from GPi
     position_nD = [[positions[i][1], positions[i][2], positions_z[i]] for i in range(len(positions))]
     my_extent = my_extent + [1.]
     my_center = my_center + [0.]
@@ -1881,10 +1881,17 @@ def mass_mirror_bg(bg_params, nameSrc, nameTgt,source, synapse_label, receptor_t
       delay = np.array(ampa_conns.delay).flatten()
 
     #log.debug("CONNECT %s", "X"*100)
+<<<<<<< HEAD
 
     #np.savetxt('./log/source.txt',ampa_conns.source)
     #np.savetxt('./log/target.txt',ampa_conns.target)
 
+=======
+    
+    #np.savetxt('/opt/data/log/source.txt',ampa_conns.source)
+    #np.savetxt('/opt/data/log/target.txt',ampa_conns.target)
+    
+>>>>>>> 92ccb2e17526e3ef5974577e37bf3fca8fc89581
     nest.SetDefaults('static_synapse_lbl', {'receptor_type': receptor_type, 'weight': weight,
                  'delay':delay, 'synapse_label':synapse_label})
     syn_dict = {'synapse_model': 'static_synapse_lbl'}
@@ -1986,7 +1993,7 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
   #  for i in np.arange(6): # this number '6' should be a parameter.
   #    x_y = hex_corner([0,0],0.240,i) #center, radius, vertex id
   #    circle_center.append(x_y)
-  #  np.savetxt('./log/centers.txt',circle_center) #save the centers.
+  #  np.savetxt('/opt/data/log/centers.txt',circle_center) #save the centers.
 
   if area_lbl=='M1':
     L5A = area_lbl+'_'+'L5A_CS'
@@ -2002,14 +2009,19 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
         for j in i:
           my_CSN.append([j[0],j[1][:2]]) #use only x and y positions in CSN
     else:
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5A + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5A + '.npz')
       #l5a_pos = Neuron_pos_fileload['Neuron_pos']
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' +  L5B + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' +  L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
+<<<<<<< HEAD
 
       Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
+=======
+      
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5A+'.txt')
+>>>>>>> 92ccb2e17526e3ef5974577e37bf3fca8fc89581
       l5a_pos = Neuron_pos_fileload[:,1:]
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5B+'.txt')
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5B+'.txt')
       l5b_pos = Neuron_pos_fileload[:,1:]
 
       l5a_gids = nest.GetNodes(source_layer[L5A])[0]
@@ -2047,14 +2059,19 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
         for j in i:
           my_CSN.append([j[0],j[1][:2]]) #use only x and y positions in CSN
     else:
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5A + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5A + '.npz')
       #l5a_pos = Neuron_pos_fileload['Neuron_pos']
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5B + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
+<<<<<<< HEAD
 
       Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
+=======
+      
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5A+'.txt')
+>>>>>>> 92ccb2e17526e3ef5974577e37bf3fca8fc89581
       l5a_pos = Neuron_pos_fileload[:,1:]
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5B+'.txt')
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5B+'.txt')
       l5b_pos = Neuron_pos_fileload[:,1:]
 
       l5a_gids = nest.GetNodes(source_layer[L5A])[0]
@@ -2160,7 +2177,7 @@ def save_conn(pre_layer_gid, post_layer_gid, conn_name):
         conn_list[i_, 3] = delay
         conn_list[i_, 4:7] = 0#np.asarray(ntop.GetPosition([pre_neuron_GID])[0])
         conn_list[i_, 7:] = 0#np.asarray(ntop.GetPosition([post_neuron_GID])[0])
-    np.savetxt('log/conn_list_%s.csv' % conn_name, conn_list, delimiter=",", fmt='%.3f')
+    np.savetxt('/opt/data/log/conn_list_%s.csv' % conn_name, conn_list, delimiter=",", fmt='%.3f')
 
 #-------------------------------------------------------------------------------
 # Connect the thalamus neurons of the chosen subset to the ctx
@@ -2607,7 +2624,7 @@ def save_conn_info(pre_circle_list, post_circle_list, connfilename, trial_num):
       conn_list[j, 0] = connections[j][0]
       conn_list[j, 1] = connections[j][1]
       conn_list[j, 2] = info[0]['weight']
-    np.savetxt('log/' + connfilename+'_circle_'+str(i) + '_trial_'+str(trial_num)+'.txt', conn_list, fmt='%1.5f', delimiter=',')
+    np.savetxt('/opt/data/log/' + connfilename+'_circle_'+str(i) + '_trial_'+str(trial_num)+'.txt', conn_list, fmt='%1.5f', delimiter=',')
 
 ########################################
 #keep and update the weight information between two group gids
@@ -2619,7 +2636,7 @@ def update_conn_info(pre_circle_list, post_circle_list, connfilename, trial_num,
   #learning_rate=[1., 1., 0., 1., 1. , 1. ]
   new_weight_list=[0., 0., 0., 0., 0., 0.]
   for i in range (len(learning_rate)):
-    conn_list = np.loadtxt('log/' + connfilename+'_circle_'+str(i)+ '_trial_'+str(trial_num-1)+'.txt', delimiter=',')
+    conn_list = np.loadtxt('/opt/data/log/' + connfilename+'_circle_'+str(i)+ '_trial_'+str(trial_num-1)+'.txt', delimiter=',')
     new_weight_list[i]=conn_list[0][2]*learning_rate[i]
   for i in range(len(pre_circle_list)):
     print ('start to update gr to pkj circle ' + str(i))
@@ -2627,7 +2644,7 @@ def update_conn_info(pre_circle_list, post_circle_list, connfilename, trial_num,
     target = [gid[0] for gid in post_circle_list[i]]
     connections = nest.GetConnections(source, target)
     nest.SetStatus(connections, {'weight': new_weight_list[i]})
-    #conn_list=np.loadtxt('log/' + connfilename + '_circle_' + str(i) + '.txt', delimiter=',' )
+    #conn_list=np.loadtxt('/opt/data/log/' + connfilename + '_circle_' + str(i) + '.txt', delimiter=',' )
     #for j in range(len(conn_list)):
       #conn=nest.GetConnections([int(conn_list[j, 0])], [int(conn_list[j, 1])])
       #nest.SetStatus(conn, {'weight': new_weight_list[i]})

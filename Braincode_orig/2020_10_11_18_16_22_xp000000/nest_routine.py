@@ -171,7 +171,7 @@ def average_fr(detector, simDuration, n):
     return detector.n_events / (float(simDuration) * float(n) / 1000.)
     
 
-#     root = os.path.abspath('log/')
+#     root = os.path.abspath('/opt/data/log/')
 #     results_filelist = []
 #     results_filelist.append(findfile(detector, root))
 # #    print (results_filelist[0])
@@ -204,7 +204,7 @@ def get_firing_rate_from_gdf_files(layer_name, layer_gid, simDuration, neuron_nb
         macro_columns_activity = []
         macro_columns_spikes = []
         pop,pop_gid = {},{}
-        gdf_path = 'log/'
+        gdf_path = '/opt/data/log/'
         onlyfiles = [f for f in os.listdir(gdf_path) if os.path.isfile(os.path.join(gdf_path, f))]
         is_first = True
         for i in onlyfiles:
@@ -242,7 +242,7 @@ def get_firing_rate_macro_column(layer_name, macro_column_neuron_gids, start_tim
         macro_columns_activity = []
         macro_columns_spikes = []
         pop,pop_gid = {},{}
-        gdf_path = 'log/'
+        gdf_path = '/opt/data/log/'
         onlyfiles = [f for f in os.listdir(gdf_path) if os.path.isfile(os.path.join(gdf_path, f))]
         is_first = True
         for i in onlyfiles:
@@ -306,7 +306,7 @@ def get_firing_rate_micro_column(layer_name, micro_column_neuron_gids, start_tim
         micro_columns_activity = []
         micro_columns_spikes = []
         pop,pop_gid = {},{}
-        gdf_path = 'log/'
+        gdf_path = '/opt/data/log/'
         onlyfiles = [f for f in os.listdir(gdf_path) if os.path.isfile(os.path.join(gdf_path, f))]
         is_first = True
         for i in onlyfiles:
@@ -384,7 +384,7 @@ def get_connection_summary(region_params, layers, region):
     if region=='S1':
         import matplotlib.pyplot as plt
         from scipy import stats
-        S1_internal_connection = np.load('ctx/'+ region_params['S1']['connection_info']['S1toS1'])
+        S1_internal_connection = np.load('/opt/data/ctx/'+ region_params['S1']['connection_info']['S1toS1'])
         columns = ['pre_nodes_num', 'post_nodes_num', 'p_center', 'sigma', 'analy_conn_num', 'conn_num', 'weight_per_neuron', 'weight_per_connection']
         for post_l in layers.keys():
             rows_in = []
@@ -445,7 +445,7 @@ def get_connection_summary(region_params, layers, region):
                 ax.yaxis.set_visible(False)
                 ax.title.set_text(post_l + ' cell in degree connections')
                 plt.table(cellText=cell_text_in , rowLabels=rows_in,colLabels=columns, loc='center')
-                plt.savefig('log/'+post_l + '_cell_in_degree_connections.png')
+                plt.savefig('/opt/data/log/'+post_l + '_cell_in_degree_connections.png')
 
         for pre_l in layers.keys():
             rows_out = []
@@ -508,12 +508,12 @@ def get_connection_summary(region_params, layers, region):
             ax.yaxis.set_visible(False)
             ax.title.set_text(pre_l+' cell out degree connections')
             plt.table(cellText=cell_text_out, rowLabels=rows_out, colLabels=columns, loc='center')
-            plt.savefig('log/'+pre_l+'_cell_out_degree_connections.png')
+            plt.savefig('/opt/data/log/'+pre_l+'_cell_out_degree_connections.png')
             #table_in = plt.figure()
     elif region=='M1':
         import matplotlib.pyplot as plt
         from scipy import stats
-        S1_internal_connection = np.load('ctx/'+ region_params['M1']['connection_info']['M1toM1'])
+        S1_internal_connection = np.load('/opt/data/ctx/'+ region_params['M1']['connection_info']['M1toM1'])
         columns = ['pre_nodes_num', 'post_nodes_num', 'p_center', 'sigma','analy_conn_num', 'conn_num', 'weight_per_neuron', 'weight_per_connection']
         for post_l in layers.keys():
             rows_in = []
@@ -574,7 +574,7 @@ def get_connection_summary(region_params, layers, region):
                 ax.yaxis.set_visible(False)
                 ax.title.set_text(post_l + ' cell in degree connections')
                 plt.table(cellText=cell_text_in , rowLabels=rows_in,colLabels=columns, loc='center')
-                plt.savefig('log/'+post_l + '_cell_in_degree_connections.png')
+                plt.savefig('/opt/data/log/'+post_l + '_cell_in_degree_connections.png')
 
         for pre_l in layers.keys():
             rows_out = []
@@ -638,7 +638,7 @@ def get_connection_summary(region_params, layers, region):
             ax.yaxis.set_visible(False)
             ax.title.set_text(pre_l+' cell out degree connections')
             plt.table(cellText=cell_text_out, rowLabels=rows_out, colLabels=columns, loc='center')
-            plt.savefig('log/'+pre_l+'_cell_out_degree_connections.png')
+            plt.savefig('/opt/data/log/'+pre_l+'_cell_out_degree_connections.png')
             #table_in = plt.figure()
 
 # -------------------------------------------------------------------------------
@@ -661,8 +661,8 @@ def get_local_nodes(nodes):
 def save_layers_position(layer_name, layer, positions):
     ids = np.array(layer.tolist())   # FIXME THIS IS BUG #1361  should not use tolist
     gid_and_positions=np.column_stack((positions, ids))
-    if not os.path.exists('log/'+layer_name+'.txt'):
-        np.savetxt('log/'+layer_name+'.txt', gid_and_positions, fmt='%1.3f')
+    if not os.path.exists('/opt/data/log/'+layer_name+'.txt'):
+        np.savetxt('/opt/data/log/'+layer_name+'.txt', gid_and_positions, fmt='%1.3f')
     
 # -------------------------------------------------------------------------------
 #randomizing the membarne potential
@@ -696,7 +696,7 @@ def gen_neuron_postions_ctx(layer_dep, layer_thickness, nbneuron, S1_layer_size,
         for j in range(Sub_Region_Architecture[1]):
             for k in range(Sub_Region_Architecture[2]):
                 Neuron_pos.append([Neuron_pos_x[i], Neuron_pos_y[j], Neuron_pos_z[k]])
-    #np.savez( 'ctx/'+pop_name, Neuron_pos=Neuron_pos)
+    #np.savez( '/opt/data/ctx/'+pop_name, Neuron_pos=Neuron_pos)
     return Neuron_pos
 
 #-----------------------------------------------------------------------------------
@@ -2002,9 +2002,9 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
         for j in i:
           my_CSN.append([j[0],j[1][:2]]) #use only x and y positions in CSN
     else:
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5A + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5A + '.npz')
       #l5a_pos = Neuron_pos_fileload['Neuron_pos']
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' +  L5B + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' +  L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
       
       Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
@@ -2047,9 +2047,9 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
         for j in i:
           my_CSN.append([j[0],j[1][:2]]) #use only x and y positions in CSN
     else:
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5A + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5A + '.npz')
       #l5a_pos = Neuron_pos_fileload['Neuron_pos']
-      #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5B + '.npz')
+      #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
       
       Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
@@ -2160,7 +2160,7 @@ def save_conn(pre_layer_gid, post_layer_gid, conn_name):
         conn_list[i_, 3] = delay
         conn_list[i_, 4:7] = 0#np.asarray(ntop.GetPosition([pre_neuron_GID])[0])
         conn_list[i_, 7:] = 0#np.asarray(ntop.GetPosition([post_neuron_GID])[0])
-    np.savetxt('log/conn_list_%s.csv' % conn_name, conn_list, delimiter=",", fmt='%.3f')
+    np.savetxt('/opt/data/log/conn_list_%s.csv' % conn_name, conn_list, delimiter=",", fmt='%.3f')
 
 #-------------------------------------------------------------------------------
 # Connect the thalamus neurons of the chosen subset to the ctx
@@ -2607,7 +2607,7 @@ def save_conn_info(pre_circle_list, post_circle_list, connfilename, trial_num):
       conn_list[j, 0] = connections[j][0]
       conn_list[j, 1] = connections[j][1]
       conn_list[j, 2] = info[0]['weight']
-    np.savetxt('log/' + connfilename+'_circle_'+str(i) + '_trial_'+str(trial_num)+'.txt', conn_list, fmt='%1.5f', delimiter=',')
+    np.savetxt('/opt/data/log/' + connfilename+'_circle_'+str(i) + '_trial_'+str(trial_num)+'.txt', conn_list, fmt='%1.5f', delimiter=',')
 
 ########################################
 #keep and update the weight information between two group gids
@@ -2619,7 +2619,7 @@ def update_conn_info(pre_circle_list, post_circle_list, connfilename, trial_num,
   #learning_rate=[1., 1., 0., 1., 1. , 1. ]
   new_weight_list=[0., 0., 0., 0., 0., 0.]
   for i in range (len(learning_rate)):
-    conn_list = np.loadtxt('log/' + connfilename+'_circle_'+str(i)+ '_trial_'+str(trial_num-1)+'.txt', delimiter=',')
+    conn_list = np.loadtxt('/opt/data/log/' + connfilename+'_circle_'+str(i)+ '_trial_'+str(trial_num-1)+'.txt', delimiter=',')
     new_weight_list[i]=conn_list[0][2]*learning_rate[i]
   for i in range(len(pre_circle_list)):
     print ('start to update gr to pkj circle ' + str(i))
@@ -2627,7 +2627,7 @@ def update_conn_info(pre_circle_list, post_circle_list, connfilename, trial_num,
     target = [gid[0] for gid in post_circle_list[i]]
     connections = nest.GetConnections(source, target)
     nest.SetStatus(connections, {'weight': new_weight_list[i]})
-    #conn_list=np.loadtxt('log/' + connfilename + '_circle_' + str(i) + '.txt', delimiter=',' )
+    #conn_list=np.loadtxt('/opt/data/log/' + connfilename + '_circle_' + str(i) + '.txt', delimiter=',' )
     #for j in range(len(conn_list)):
       #conn=nest.GetConnections([int(conn_list[j, 0])], [int(conn_list[j, 1])])
       #nest.SetStatus(conn, {'weight': new_weight_list[i]})

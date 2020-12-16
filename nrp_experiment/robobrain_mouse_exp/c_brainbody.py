@@ -1,0 +1,1 @@
+@nrp.MapSpikeSink("cortex_out", nrp.brain.ctx_M1_layers[1], nrp.leaky_integrator_alpha)'/opt/data/ctx/@nrp.Robot2Neuron()'/opt/data/ctx/def c_brainbody (t):'/opt/data/ctx/clientLogger.info('out :', cortex_out.voltage)'/opt/data/ctx/
