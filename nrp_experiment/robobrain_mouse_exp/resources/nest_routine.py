@@ -2006,13 +2006,8 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
       #l5a_pos = Neuron_pos_fileload['Neuron_pos']
       #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' +  L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
-<<<<<<< HEAD
-
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
-=======
 
       Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5A+'.txt')
->>>>>>> 92ccb2e17526e3ef5974577e37bf3fca8fc89581
       l5a_pos = Neuron_pos_fileload[:,1:]
       Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5B+'.txt')
       l5b_pos = Neuron_pos_fileload[:,1:]
@@ -2056,13 +2051,10 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
       #l5a_pos = Neuron_pos_fileload['Neuron_pos']
       #Neuron_pos_fileload = np.load('/opt/data/ctx/Neuron_pos_' + L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
-<<<<<<< HEAD
 
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
-=======
 
       Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5A+'.txt')
->>>>>>> 92ccb2e17526e3ef5974577e37bf3fca8fc89581
+
       l5a_pos = Neuron_pos_fileload[:,1:]
       Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5B+'.txt')
       l5b_pos = Neuron_pos_fileload[:,1:]
