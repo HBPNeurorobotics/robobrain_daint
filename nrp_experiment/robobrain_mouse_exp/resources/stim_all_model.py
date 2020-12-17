@@ -253,6 +253,12 @@ def main():
         print('Kernel Status: ')
         print(nest.GetKernelStatus())
 
+        print('\n\n ========== BF ============')
+        print('\n\n ========== BF ============')
+        print(ctx_M1_layers)
+
+        return ctx_M1_layers
+
         # if sim_regions['TH_S1']:
         #    for layer_name in th_layers['TH_S1_EZ'].keys():
         #        rate = nest_routine.get_firing_rate_from_gdf_files(layer_name, detectors['TH_S1_EZ' + '_' + layer_name], sim_params['simDuration'],
@@ -775,8 +781,6 @@ def main():
     else:
         print('wrong model set')
 
-
-    return ctx_M1_layers
 
 
 if __name__ == '__main__':
