@@ -253,10 +253,6 @@ def main():
         print('Kernel Status: ')
         print(nest.GetKernelStatus())
 
-        print('\n\n ========== BF ============')
-        print('\n\n ========== BF ============')
-        print(ctx_M1_layers)
-
         return ctx_M1_layers
 
         # if sim_regions['TH_S1']:
