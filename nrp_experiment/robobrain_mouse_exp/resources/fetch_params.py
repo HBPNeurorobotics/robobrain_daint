@@ -10,7 +10,9 @@
 
 def read_sim():
   try:
-    from simParams import simParams as sim_params
+    from runpy import run_path
+    file_params = run_path('simParams.py', init_globals=globals())
+    sim_params = file_params['simParams']
     return sim_params
   except:
     raise ImportError('The simulation parameters could not be loaded. Please make sure that the file `simParams.py` exists and is a valid python defining the variable "simParams".')
@@ -18,7 +20,9 @@ def read_sim():
 
 def read_ctx():
     try:
-        from ctxParams import ctxParams as ctx_params
+        from runpy import run_path
+        file_params = run_path('ctxParams.py', init_globals=globals())
+        ctx_params = file_params['ctxParams']
         return ctx_params
     except:
         raise ImportError(
@@ -27,7 +31,9 @@ def read_ctx():
 
 def read_ctx_M1():
     try:
-        from ctxM1Params import ctxM1Params as ctx_M1_params
+        from runpy import run_path
+        file_params = run_path('ctxM1Params.py', init_globals=globals())
+        ctx_M1_params = file_params['ctxM1Params']
         return ctx_M1_params
     except:
         raise ImportError(
@@ -47,7 +53,9 @@ def read_ctx_M2():
     
 def read_th():
     try:
-        from thParams import thParams as th_params
+        from runpy import run_path
+        file_params = run_path('thParams.py', init_globals=globals())
+        th_params = file_params['thParams']
         return th_params
     except:
         raise ImportError(
@@ -56,7 +64,9 @@ def read_th():
 
 def read_bg():
   try:
-    from bgParams import bgParams as bg_params
+    from runpy import run_path
+    file_params = run_path('bgParams.py', init_globals=globals())
+    bg_params = file_params['bgParams']
     return bg_params
   except:
     raise ImportError('The BG-region parameters could not be loaded. Please make sure that the file `bgParams.py` exists and is a valid python defining the variable "bgParams".')
@@ -64,8 +74,10 @@ def read_bg():
 
 def read_conn():
     try:
-        from connParams import connParams as conn_params
-        return conn_params
+        from runpy import run_path
+        file_params = run_path('connParams.py', init_globals=globals())
+        ctx_params = file_params['connParams']
+        return ctx_params
     except:
         raise ImportError(
             'The cortex-region parameters could not be loaded. Please make sure that the file `baseCONNParams.py` exists and is a valid python defining the variable "connParams".')

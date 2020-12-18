@@ -48,10 +48,12 @@
           "isClosable": true,
           "reorderEnabled": true,
           "title": "",
+          "height": 46.15384615384616,
+          "width": 69.23076923076923,
           "content": [
             {
               "type": "stack",
-              "width": 53.591160220994475,
+              "width": 39.342265529841654,
               "isClosable": true,
               "reorderEnabled": true,
               "title": "",
@@ -77,27 +79,63 @@
               ]
             },
             {
-              "type": "stack",
+              "type": "row",
               "isClosable": true,
               "reorderEnabled": true,
               "title": "",
-              "activeItemIndex": 0,
-              "width": 46.408839779005525,
+              "width": 60.657734470158346,
+              "height": 25,
               "content": [
                 {
-                  "type": "component",
-                  "title": "TF Editor",
-                  "id": "transfer-function-editor",
-                  "componentName": "angularModuleComponent",
-                  "componentState": {
-                    "module": "exdFrontendApp",
-                    "angularDirective": "<transfer-function-editor />",
-                    "singleton": true
-                  },
-                  "pwidth": 900,
-                  "pheight": 700,
+                  "type": "stack",
                   "isClosable": true,
-                  "reorderEnabled": true
+                  "reorderEnabled": true,
+                  "title": "",
+                  "activeItemIndex": 0,
+                  "height": 100,
+                  "width": 59.53582240161454,
+                  "content": [
+                    {
+                      "type": "component",
+                      "title": "Spike Train",
+                      "id": "spike-train",
+                      "componentName": "angularModuleComponent",
+                      "componentState": {
+                        "module": "exdFrontendApp",
+                        "angularDirective": "<spike-train />",
+                        "singleton": true
+                      },
+                      "pwidth": 600,
+                      "pheight": 300,
+                      "isClosable": true,
+                      "reorderEnabled": true
+                    }
+                  ]
+                },
+                {
+                  "type": "stack",
+                  "isClosable": true,
+                  "reorderEnabled": true,
+                  "title": "",
+                  "activeItemIndex": 0,
+                  "width": 40.46417759838546,
+                  "content": [
+                    {
+                      "type": "component",
+                      "title": "Log Console",
+                      "id": "log-console",
+                      "componentName": "angularModuleComponent",
+                      "componentState": {
+                        "module": "exdFrontendApp",
+                        "angularDirective": "<log-console />",
+                        "singleton": true
+                      },
+                      "pwidth": 400,
+                      "pheight": 300,
+                      "isClosable": true,
+                      "reorderEnabled": true
+                    }
+                  ]
                 }
               ]
             }
@@ -109,6 +147,154 @@
       "title": "",
       "openPopouts": [],
       "maximisedItemId": null
+    }
+  },
+  "plottingToolsData": {
+    "plotid-0-0-0-1-2-0-2-0": {
+      "structureSetupVisible": false,
+      "plotVisible": true,
+      "axisLabels": [
+        "X",
+        "Y"
+      ],
+      "plotModel": {
+        "modelTitle": "Line",
+        "thumbnail": "img/esv/plotting-tool/line_charts.png",
+        "dimensions": 2,
+        "multi": true,
+        "hasAxis": true,
+        "type": "scatter",
+        "mode": "lines",
+        "color": "hsl(10,95%,87%)",
+        "$$hashKey": "object:650"
+      },
+      "plotStructure": {
+        "axis": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "plotElements": [
+          {
+            "label": "",
+            "dimensions": [
+              {
+                "source": "Time",
+                "$$hashKey": "object:1466"
+              },
+              {
+                "source": "/gazebo_muscle_interface/robobrain_mouse/Foot1/cmd_activation",
+                "$$hashKey": "object:1467"
+              }
+            ],
+            "$$hashKey": "object:1460"
+          },
+          {
+            "label": "",
+            "dimensions": [
+              {
+                "source": "Time",
+                "$$hashKey": "object:1562"
+              },
+              {
+                "source": "/gazebo_muscle_interface/robobrain_mouse/Foot2/cmd_activation",
+                "$$hashKey": "object:1563"
+              }
+            ],
+            "$$hashKey": "object:1558"
+          }
+        ]
+      }
+    },
+    "plotid-0-0-0-1-0-2-0-2-0": {
+      "structureSetupVisible": false,
+      "plotVisible": true,
+      "axisLabels": [
+        "X",
+        "Y"
+      ],
+      "plotModel": {
+        "modelTitle": "Line",
+        "thumbnail": "img/esv/plotting-tool/line_charts.png",
+        "dimensions": 2,
+        "multi": true,
+        "hasAxis": true,
+        "type": "scatter",
+        "mode": "lines",
+        "color": "hsl(10,95%,87%)",
+        "$$hashKey": "object:342"
+      },
+      "plotStructure": {
+        "axis": [
+          "time",
+          "humerus_muscle_activation",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "plotElements": [
+          {
+            "label": "humerus1",
+            "dimensions": [
+              {
+                "source": "Time",
+                "$$hashKey": "object:4347"
+              },
+              {
+                "source": "/gazebo_muscle_interface/robobrain_mouse/Humerus1/cmd_activation",
+                "$$hashKey": "object:4348"
+              }
+            ],
+            "$$hashKey": "object:4343"
+          },
+          {
+            "label": "humerus2",
+            "dimensions": [
+              {
+                "source": "Time",
+                "$$hashKey": "object:4626"
+              },
+              {
+                "source": "/gazebo_muscle_interface/robobrain_mouse/Humerus2/cmd_activation",
+                "$$hashKey": "object:4627"
+              }
+            ],
+            "$$hashKey": "object:4622"
+          },
+          {
+            "label": "humerus3",
+            "dimensions": [
+              {
+                "source": "Time",
+                "$$hashKey": "object:4788"
+              },
+              {
+                "source": "/gazebo_muscle_interface/robobrain_mouse/Humerus3/cmd_activation",
+                "$$hashKey": "object:4789"
+              }
+            ],
+            "$$hashKey": "object:4784"
+          },
+          {
+            "label": "humerus4",
+            "dimensions": [
+              {
+                "source": "Time",
+                "$$hashKey": "object:4941"
+              },
+              {
+                "source": "/gazebo_muscle_interface/robobrain_mouse/Humerus4/cmd_activation",
+                "$$hashKey": "object:4942"
+              }
+            ],
+            "$$hashKey": "object:4937"
+          }
+        ]
+      }
     }
   }
 }

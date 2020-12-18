@@ -3,13 +3,14 @@
   xmlns="http://schemas.humanbrainproject.eu/SP10/2014/BIBI" xsi:schemaLocation="http://schemas.humanbrainproject.eu/SP10/2014/BIBI ../bibi_configuration.xsd">
   <brainModel>
     <file>robobrain.py</file>
-    <populations from="0" population="ctx_M1_layers" to="2" xsi:type="Range"/>
   </brainModel>
   <bodyModel robotId="robobrain_mouse">robobrain_mouse_with_joystick/model.sdf</bodyModel>
   <mode>SynchronousNestClientSimulation</mode>
+  <transferFunction src="braintobody.py" active="true" priority="0" xsi:type="PythonTransferFunction" />
+  <transferFunction src="b_muscle_controller.py" active="true" priority="0" xsi:type="PythonTransferFunction" />
   <transferFunction src="a_muscle_feedback.py" active="true" priority="0" xsi:type="PythonTransferFunction" />
   <transferFunction src="controller.py" active="true" priority="0" xsi:type="PythonTransferFunction" />
   <transferFunction src="jointeffort.py" active="true" priority="0" xsi:type="PythonTransferFunction" />
-  <transferFunction src="b_muscle_controller.py" active="true" priority="0" xsi:type="PythonTransferFunction" />
-  <transferFunction src="c_brainbody.py" active="true" priority="0" xsi:type="PythonTransferFunction" />
+  <transferFunction src="manualInput.py" active="false" priority="0" xsi:type="PythonTransferFunction" />
+  <transferFunction src="neuronMonitor.py" active="true" priority="0" xsi:type="PythonTransferFunction" />
 </bibi>
