@@ -664,12 +664,12 @@ def save_layers_position(layer_name, layer, positions):
     if not os.path.exists('/opt/data/log/'+layer_name+'.txt'):
         np.savetxt('/opt/data/log/'+layer_name+'.txt', gid_and_positions, fmt='%1.3f')
 
-    # -------------------------------------------------------------------------------
-    #randomizing the membarne potential
-    #
-    # -------------------------------------------------------------------------------
-    def randomizing_mp(layer, Vth, Vrest):
-        layer.set({"V_m": Vrest + (Vth - Vrest) * np.random.rand()})
+# -------------------------------------------------------------------------------
+#randomizing the membarne potential
+#
+# -------------------------------------------------------------------------------
+def randomizing_mp(layer, Vth, Vrest):
+    layer.set({"V_m": Vrest + (Vth - Vrest) * np.random.rand()})
 
 
 #######
