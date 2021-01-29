@@ -89,6 +89,12 @@ benefe23/nrp_with_nest_client:wip_update_yml_sunday_robobrain \
 bash
 
 
+
+## start htop container 
+ssh -A nidXXX
+sarus run --tty benefe23/ubuntu_htop /bin/bash
+
+
 ## Debug backend container locally
 docker run -it --entrypoint /bin/bash benefe23/nrp_with_nest_client:wip_update_yml_sunday_robobrain 
 

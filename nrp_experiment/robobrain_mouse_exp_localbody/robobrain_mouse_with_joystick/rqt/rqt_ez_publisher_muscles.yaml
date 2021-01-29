@@ -1,0 +1,23 @@
+publish_interval: 100
+settings:
+  /gazebo_muscle_interface/robobrain_mouse/Foot1/cmd_activation/data: {is_repeat: false,
+    max: 1.0, min: 0.0}
+  /gazebo_muscle_interface/robobrain_mouse/Foot2/cmd_activation/data: {is_repeat: false,
+    max: 1.0, min: 0.0}
+  /gazebo_muscle_interface/robobrain_mouse/Radius1/cmd_activation/data: {is_repeat: false,
+    max: 1.0, min: 0.0}
+  /gazebo_muscle_interface/robobrain_mouse/Radius2/cmd_activation/data: {is_repeat: false,
+    max: 1.0, min: 0.0}
+  /gazebo_muscle_interface/robobrain_mouse/Humerus1/cmd_activation/data: {is_repeat: false,
+    max: 1.0, min: 0.0}
+  /gazebo_muscle_interface/robobrain_mouse/Humerus2/cmd_activation/data: {is_repeat: false,
+    max: 1.0, min: 0.0}
+  /gazebo_muscle_interface/robobrain_mouse/Humerus3/cmd_activation/data: {is_repeat: false,
+    max: 1.0, min: 0.0}
+  /gazebo_muscle_interface/robobrain_mouse/Humerus4/cmd_activation/data: {is_repeat: false,
+    max: 1.0, min: 0.0}
+
+texts: [/gazebo_muscle_interface/robobrain_mouse/Foot1/cmd_activation/data, /gazebo_muscle_interface/robobrain_mouse/Foot2/cmd_activation/data,
+  /gazebo_muscle_interface/robobrain_mouse/Radius1/cmd_activation/data, /gazebo_muscle_interface/robobrain_mouse/Radius2/cmd_activation/data,
+  /gazebo_muscle_interface/robobrain_mouse/Humerus1/cmd_activation/data, /gazebo_muscle_interface/robobrain_mouse/Humerus2/cmd_activation/data,
+  /gazebo_muscle_interface/robobrain_mouse/Humerus3/cmd_activation/data, /gazebo_muscle_interface/robobrain_mouse/Humerus4/cmd_activation/data]

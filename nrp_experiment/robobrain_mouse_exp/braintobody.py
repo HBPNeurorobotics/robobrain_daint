@@ -73,16 +73,32 @@ def braintobody (t,
                                  M1_L5B_PV.voltage, M1_L5B_SST.voltage, 
                                  M1_L6_CT.voltage, M1_L6_PV.voltage, M1_L6_SST.voltage))
     
-    if t < 0.0:
-        M1_L1_ENGC_in.rate = 0.0
+         
+    M1_L1_ENGC_in.rate = 0.0
+    flag = ''
+
+    if t > 3.0:
+        flag = 'YES'
     if t > 6.0:
-        if t > 10.0:
-            clientLogger.advertise('''--> STOP \nMotor Cortex \nSpike Injections''')
-            M1_L1_ENGC_in.rate = 0.0
-        else:
-            clientLogger.advertise('''--> START \nMotor Cortex \nSpike Injections''')
-            M1_L1_ENGC_in.rate = 50000.0
+        flag = 'NO'
+    if t > 9.0:
+        flag = 'YES'
+    if t > 12.0:
+        flag = 'NO'
+    if t > 15.0:
+        flag = 'YES'
+    if t > 18.0:
+        flag = 'NO'
             
+            
+    if flag == 'YES':
+        clientLogger.advertise('''--> START \nMotor Cortex \nSpike Injections''')
+        M1_L1_ENGC_in.rate = 50000.0 
+    elif flag == 'NO':
+        clientLogger.advertise('''--> STOP \nMotor Cortex \nSpike Injections''')
+        M1_L1_ENGC_in.rate = 0.0 
+        
+         
     muscle_actuation.value[6] =  min(1, M1_L1_ENGC.voltage / 2.0)
      
         
