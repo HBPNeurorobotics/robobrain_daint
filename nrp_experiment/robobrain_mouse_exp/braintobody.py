@@ -2,7 +2,8 @@
 # GLOBAL VARIABLES
 @nrp.MapVariable("muscle_actuation", initial_value=8*[0.], scope=nrp.GLOBAL)
 @nrp.MapVariable("external_input", initial_value=0, scope=nrp.GLOBAL)
-
+@nrp.MapVariable("counter", initial_value=1, scope=nrp.GLOBAL)
+@nrp.MapVariable("flag", initial_value=False, scope=nrp.GLOBAL)
 #-------------------------------------------------------------------------------
 # SPIKE SOURCES
 @nrp.MapSpikeSource("M1_L1_ENGC_in", nrp.brain.M1_L1_ENGC, nrp.poisson, delay=1.5)
@@ -34,7 +35,7 @@
 @nrp.MapSpikeSink("M1_L6_PV", nrp.brain.M1_L6_PV, nrp.leaky_integrator_alpha, delay=1.5)
 @nrp.MapSpikeSink("M1_L6_SST", nrp.brain.M1_L6_SST, nrp.leaky_integrator_alpha, delay=1.5)
 @nrp.Robot2Neuron()
-def braintobody (t, 
+def braintobody (t, counter, flag,
                  muscle_actuation, external_input,
                  M1_L1_ENGC_in, M1_L23_CC_in, M1_L5A_CC_in, 
                  M1_L1_ENGC, M1_L1_SBC,
@@ -75,33 +76,31 @@ def braintobody (t,
     
          
     M1_L1_ENGC_in.rate = 0.0
-    flag = ''
 
-    if t > 3.0:
-        flag = 'YES'
-    if t > 6.0:
-        flag = 'NO'
-    if t > 9.0:
-        flag = 'YES'
-    if t > 12.0:
-        flag = 'NO'
-    if t > 15.0:
-        flag = 'YES'
-    if t > 18.0:
-        flag = 'NO'
+    if counter.value > 0 and counter.value % 150 == 0:
+        if flag.value:
+            flag.value = False
+        else:
+            flag.value = True
             
-            
-    if flag == 'YES':
-        clientLogger.advertise('''--> START \nMotor Cortex \nSpike Injections''')
-        M1_L1_ENGC_in.rate = 50000.0 
-    elif flag == 'NO':
-        clientLogger.advertise('''--> STOP \nMotor Cortex \nSpike Injections''')
-        M1_L1_ENGC_in.rate = 0.0 
+    if counter.value > 149:        
+        if flag.value:
+            clientLogger.advertise('''--> START Motor Cortex Spike Injections''', duration = 10000)
+            M1_L1_ENGC_in.rate = 50000.0 
+        elif not flag.value:
+            clientLogger.advertise('''--> STOP Motor Cortex Spike Injections''', duration = 10000)
+            M1_L1_ENGC_in.rate = 0.0 
         
-         
-    muscle_actuation.value[6] =  min(1, M1_L1_ENGC.voltage / 2.0)
-     
+    a = min(1, M1_L1_ENGC.voltage / 2.0)
+    b = 1 - a
+    
+    muscle_actuation.value[6] = a
+    muscle_actuation.value[1] = a
+    muscle_actuation.value[4] = a
+    muscle_actuation.value[0] = 0.2     
         
     M1_L23_CC_in.rate = 0.0 #external_input.value
     M1_L5A_CC_in.rate = 0.0 #external_input.value
+    
+    counter.value = counter.value + 1
     
