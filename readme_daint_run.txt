@@ -1,3 +1,10 @@
+## Changes to containers
+- nrp container:
+	- docker cp nest_client_rest.py 6be3b849e160:/home_daint/bbpnrsoa/.opt/platform_venv/lib/python2.7/site-packages/cscs_nest_nrp/benchmarks/nest_clien_rest.py
+    - docker cp robobrain_mouse_with_joystick/ 6be3b849e160:/home_daint/bbpnrsoa/nrp/src/Models/robobrain_mouse_with_joystick
+    - ./create_symlinks.sh
+
+
 ssh -A bp000231@ela.cscs.ch
 ssh -A daint
 
@@ -7,11 +14,12 @@ scontrol show jobid <JOBID> | grep NodeList
 
 
 benefe23/nrp_with_nest_client:wip_update_yml_sunday_robobrain
+christopherbignamini/nrp_with_nest_client:wip_update_yml_sunday
 
 
 ## start nrp backend
 module load sarus 
-sarus pull benefe23/nrp_with_nest_client:wip_update_yml_sunday_robobrain \
+sarus pull christopherbignamini/nrp_with_nest_client:wip_update_yml_sunday
 srun -v --account ich004m -C mc -N1 -n1 /apps/daint/system/opt/sarus/1.1.0/bin/sarus run \
 --mount=type=bind,source=/etc/opt/slurm/slurm.conf,dst=/usr/local/etc/slurm.conf \
 --mount=type=bind,source=/var/run/munge/munge.socket.2,dst=/var/run/munge/munge.socket.2 \
@@ -57,9 +65,12 @@ sarus pull christopherbignamini/nestsim:benedikt_restricted_python
 sarus run --tty --mount=type=bind,source=$HOME,dst=$HOME \
       christopherbignamini/nestsim:benedikt_restricted_python \
       /bin/bash
-cp -r $HOME/robobrain_nrp/nrp_experiment/robobrain_mouse_exp/resources /opt/data
+ln -s $HOME/robobrain_nrp/nrp_experiment/robobrain_mouse_exp/resources /opt/data
 . /opt/nest/bin/nest_vars.sh
 nest-server start -o
+
+
+
 
 
 ## start tunnel
@@ -78,9 +89,17 @@ benefe23/nrp_with_nest_client:wip_update_yml_sunday_robobrain \
 bash
 
 
+
+## start htop container 
+ssh -A nidXXX
+sarus run --tty benefe23/ubuntu_htop /bin/bash
+
+
 ## Debug backend container locally
 docker run -it --entrypoint /bin/bash benefe23/nrp_with_nest_client:wip_update_yml_sunday_robobrain 
 
 
 ## Start frontend
 http://148.187.96.212/#/esv-private?dev
+
+--- more output logs with Virtual Coach!

@@ -5,7 +5,7 @@
   <thumbnail>ExDMouseCDP1.jpg</thumbnail>
   <description>Loads a virtual mouse with the robobrain experimental setup into the Holodeck environment.</description>
   <tags>mouse biological holodeck</tags>
-  <timeout>1800</timeout>
+  <timeout>18000000</timeout>
   <configuration type="3d-settings" src="holodeck.ini" />
   <configuration type="brainvisualizer" src="MouseCDP1NeuronCoords.json" />
   <configuration type="user-interaction-settings" src="holodeck.uis" />
