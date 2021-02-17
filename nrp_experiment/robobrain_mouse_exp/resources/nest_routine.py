@@ -1601,7 +1601,7 @@ def create_layers_bg(bg_params, nucleus, fake=0, mirror_neurons=None, mirror_pos
 
   if nucleus=='GPi_fake':
     positions_z = pyrngs[0].uniform(0., 0.5, pop_size).tolist()
-    positions = np.loadtxt('./log/'+nucleus[:3]+'.txt') # retrive positions x,y from GPi
+    positions = np.loadtxt('/opt/data/log/'+nucleus[:3]+'.txt') # retrive positions x,y from GPi
     position_nD = [[positions[i][1], positions[i][2], positions_z[i]] for i in range(len(positions))]
     my_extent = my_extent + [1.]
     my_center = my_center + [0.]
@@ -1882,8 +1882,8 @@ def mass_mirror_bg(bg_params, nameSrc, nameTgt,source, synapse_label, receptor_t
     
     #log.debug("CONNECT %s", "X"*100)
     
-    #np.savetxt('./log/source.txt',ampa_conns.source)
-    #np.savetxt('./log/target.txt',ampa_conns.target)
+    #np.savetxt('/opt/data/log/source.txt',ampa_conns.source)
+    #np.savetxt('/opt/dat/opt/data/log/target.txt',ampa_conns.target)
     
     nest.SetDefaults('static_synapse_lbl', {'receptor_type': receptor_type, 'weight': weight,
                  'delay':delay, 'synapse_label':synapse_label})
@@ -1986,7 +1986,7 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
   #  for i in np.arange(6): # this number '6' should be a parameter.
   #    x_y = hex_corner([0,0],0.240,i) #center, radius, vertex id
   #    circle_center.append(x_y)
-  #  np.savetxt('./log/centers.txt',circle_center) #save the centers.
+  #  np.savetxt('/opt/data/log/centers.txt',circle_center) #save the centers.
 
   if area_lbl=='M1':
     L5A = area_lbl+'_'+'L5A_CS'
@@ -2007,9 +2007,9 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
       #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' +  L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
       
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5A+'.txt')
       l5a_pos = Neuron_pos_fileload[:,1:]
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5B+'.txt')
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5B+'.txt')
       l5b_pos = Neuron_pos_fileload[:,1:]
 
       l5a_gids = nest.GetNodes(source_layer[L5A])[0]
@@ -2052,9 +2052,9 @@ def identify_proj_neurons_ctx_bg_last(source_layer,params,numb_neurons,area_lbl,
       #Neuron_pos_fileload = np.load('ctx/Neuron_pos_' + L5B + '.npz')
       #l5b_pos = Neuron_pos_fileload['Neuron_pos']
       
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5A+'.txt')
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5A+'.txt')
       l5a_pos = Neuron_pos_fileload[:,1:]
-      Neuron_pos_fileload = np.loadtxt('./log/'+L5B+'.txt')
+      Neuron_pos_fileload = np.loadtxt('/opt/data/log/'+L5B+'.txt')
       l5b_pos = Neuron_pos_fileload[:,1:]
       
       l5a_gids = nest.GetNodes(source_layer[L5A])[0]
@@ -2160,7 +2160,7 @@ def save_conn(pre_layer_gid, post_layer_gid, conn_name):
         conn_list[i_, 3] = delay
         conn_list[i_, 4:7] = 0#np.asarray(ntop.GetPosition([pre_neuron_GID])[0])
         conn_list[i_, 7:] = 0#np.asarray(ntop.GetPosition([post_neuron_GID])[0])
-    np.savetxt('log/conn_list_%s.csv' % conn_name, conn_list, delimiter=",", fmt='%.3f')
+    np.savetxt('/opt/data/log/conn_list_%s.csv' % conn_name, conn_list, delimiter=",", fmt='%.3f')
 
 #-------------------------------------------------------------------------------
 # Connect the thalamus neurons of the chosen subset to the ctx
@@ -2607,7 +2607,7 @@ def save_conn_info(pre_circle_list, post_circle_list, connfilename, trial_num):
       conn_list[j, 0] = connections[j][0]
       conn_list[j, 1] = connections[j][1]
       conn_list[j, 2] = info[0]['weight']
-    np.savetxt('log/' + connfilename+'_circle_'+str(i) + '_trial_'+str(trial_num)+'.txt', conn_list, fmt='%1.5f', delimiter=',')
+    np.savetxt('/opt/data/log/' + connfilename+'_circle_'+str(i) + '_trial_'+str(trial_num)+'.txt', conn_list, fmt='%1.5f', delimiter=',')
 
 ########################################
 #keep and update the weight information between two group gids
@@ -2619,7 +2619,7 @@ def update_conn_info(pre_circle_list, post_circle_list, connfilename, trial_num,
   #learning_rate=[1., 1., 0., 1., 1. , 1. ]
   new_weight_list=[0., 0., 0., 0., 0., 0.]
   for i in range (len(learning_rate)):
-    conn_list = np.loadtxt('log/' + connfilename+'_circle_'+str(i)+ '_trial_'+str(trial_num-1)+'.txt', delimiter=',')
+    conn_list = np.loadtxt('/opt/data/log/' + connfilename+'_circle_'+str(i)+ '_trial_'+str(trial_num-1)+'.txt', delimiter=',')
     new_weight_list[i]=conn_list[0][2]*learning_rate[i]
   for i in range(len(pre_circle_list)):
     print ('start to update gr to pkj circle ' + str(i))
@@ -2627,7 +2627,7 @@ def update_conn_info(pre_circle_list, post_circle_list, connfilename, trial_num,
     target = [gid[0] for gid in post_circle_list[i]]
     connections = nest.GetConnections(source, target)
     nest.SetStatus(connections, {'weight': new_weight_list[i]})
-    #conn_list=np.loadtxt('log/' + connfilename + '_circle_' + str(i) + '.txt', delimiter=',' )
+    #conn_list=np.loadtxt('/opt/data/log/' + connfilename + '_circle_' + str(i) + '.txt', delimiter=',' )
     #for j in range(len(conn_list)):
       #conn=nest.GetConnections([int(conn_list[j, 0])], [int(conn_list[j, 1])])
       #nest.SetStatus(conn, {'weight': new_weight_list[i]})

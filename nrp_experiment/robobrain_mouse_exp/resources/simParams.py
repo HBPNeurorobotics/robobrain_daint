@@ -23,7 +23,7 @@ simParams =\
     "macro_columns_nb": 7,
     "micro_columns_nb": 7,
     "msd": 123456,
-    "nbcpu": 14,
+    "nbcpu": 72,
     "nbnodes": 1,
     "overwrite_files": True,
     "scalefactor": [
