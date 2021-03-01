@@ -1,9 +1,0 @@
-rm /scratch/snx3000/$USER/nrp_logs/nginx/*
-rm /scratch/snx3000/$USER/nrp_logs/nrp-services_app/*
-rm /scratch/snx3000/$USER/nrp_logs/ros-simulation-factory_app/*
-rm /scratch/snx3000/$USER/nrp_logs/rosbridge/*
-rm /scratch/snx3000/$USER/nrp_logs/roscore/*
-rm /scratch/snx3000/$USER/nrp_logs/rosvideoserver/*
-rm /scratch/snx3000/$USER/nrp_logs/virtualcoach/*
-rm /scratch/snx3000/$USER/nrp_logs/uwsgi/*
-rm /scratch/snx3000/$USER/nrp_logs/nginx_home/*
