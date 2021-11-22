@@ -7,7 +7,7 @@ This file contains the setup of the neuronal network running the Husky experimen
 import nest
 import logging
 
-__author__ = 'LorenzoVannucci'
+#__author__ = 'LorenzoVannucci'
 
 logger = logging.getLogger(__name__)
 
